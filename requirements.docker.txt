@@ -1,0 +1,26 @@
+# CrewLife Docker Dependencies
+
+# Web Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# Database
+PyMySQL==1.1.0
+
+# Security
+bcrypt==4.1.2
+
+# Excel Export
+openpyxl==3.1.2
+
+# Monitoring
+psutil==5.9.6
+
+# HTTP Requests
+requests==2.31.0
+
+# Environment
+python-dotenv==1.0.0
+
+# Production WSGI Server
+gunicorn==21.2.0

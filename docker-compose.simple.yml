@@ -1,0 +1,171 @@
+version: '3.8'
+
+services:
+  # База данных MariaDB
+  mariadb:
+    image: mariadb:10.11
+    container_name: crewlife-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: crewlife_prod
+      MYSQL_USER: crewlife_user
+      MYSQL_PASSWORD: andrei8002012
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./backups:/backups
+    ports:
+      - "3307:3306"
+    networks:
+      - crewlife-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis для кэширования
+  redis:
+    image: redis:7-alpine
+    container_name: crewlife-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass redis_password
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6380:6379"
+    networks:
+      - crewlife-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 10s
+      retries: 5
+
+  # Основное приложение
+  crewlife-app:
+    build: .
+    container_name: crewlife-app
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=crewlife_user
+      - DB_PASSWORD=andrei8002012
+      - DB_NAME=crewlife_prod
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=redis_password
+    volumes:
+      - ./logs:/app/logs
+      - ./reports:/app/reports
+    ports:
+      - "5000:5000"
+    networks:
+      - crewlife-network
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      timeout: 10s
+      retries: 5
+
+  # Nginx для балансировки нагрузки
+  nginx:
+    image: nginx:alpine
+    container_name: crewlife-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/ssl:/etc/nginx/ssl
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - crewlife-network
+    depends_on:
+      - crewlife-app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      timeout: 10s
+      retries: 5
+
+  # Веб-мониторинг базы данных
+  web-monitor:
+    build: .
+    container_name: crewlife-web-monitor
+    restart: unless-stopped
+    command: python3 web_db_monitor.py
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=crewlife_user
+      - DB_PASSWORD=andrei8002012
+      - DB_NAME=crewlife_prod
+    volumes:
+      - ./logs:/app/logs
+      - ./reports:/app/reports
+    ports:
+      - "5001:5001"
+    networks:
+      - crewlife-network
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/stats"]
+      timeout: 10s
+      retries: 5
+
+  # Prometheus для метрик
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: crewlife-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - crewlife-network
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+
+  # Grafana для визуализации
+  grafana:
+    image: grafana/grafana:latest
+    container_name: crewlife-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - crewlife-network
+    depends_on:
+      - prometheus
+
+volumes:
+  mariadb_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  crewlife-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

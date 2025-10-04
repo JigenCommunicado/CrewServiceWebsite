@@ -1,0 +1,164 @@
+name: 🚀 CrewLife CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, production ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  test:
+    name: 🧪 Тестирование
+    runs-on: ubuntu-latest
+    
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: crewlife_test
+          MYSQL_USER: crewlife_user
+          MYSQL_PASSWORD: test_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: 📦 Install Python dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+
+    - name: 🧪 Run Python tests
+      run: |
+        python -m pytest tests/ -v --cov=crewlife --cov-report=xml
+      env:
+        DB_HOST: localhost
+        DB_USER: crewlife_user
+        DB_PASSWORD: test_password
+        DB_NAME: crewlife_test
+
+    - name: 📊 Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+
+  security:
+    name: 🔒 Безопасность
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: 🔍 Security scan
+      run: |
+        pip install bandit safety
+        bandit -r . -f json -o bandit-report.json
+        safety check --json --output safety-report.json
+
+    - name: 📋 Upload security reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+
+  build:
+    name: 🏗️ Сборка
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: 📦 Build Docker image
+      run: |
+        docker build -t crewlife:${{ github.sha }} .
+        docker tag crewlife:${{ github.sha }} crewlife:latest
+
+    - name: 📋 Save Docker image
+      run: |
+        docker save crewlife:${{ github.sha }} | gzip > crewlife-image.tar.gz
+
+    - name: 📤 Upload Docker image
+      uses: actions/upload-artifact@v3
+      with:
+        name: docker-image
+        path: crewlife-image.tar.gz
+
+  deploy-staging:
+    name: 🚀 Развертывание в Staging
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    environment: staging
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 📥 Download Docker image
+      uses: actions/download-artifact@v3
+      with:
+        name: docker-image
+
+    - name: 🚀 Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Здесь будет команда развертывания в staging
+        ./deploy.sh staging
+
+  deploy-production:
+    name: 🚀 Развертывание в Production
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/production'
+    environment: production
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 📥 Download Docker image
+      uses: actions/download-artifact@v3
+      with:
+        name: docker-image
+
+    - name: 🚀 Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        ./deploy.sh production
+
+    - name: 🔔 Notify deployment
+      run: |
+        echo "Production deployment completed successfully!"
+        # Здесь можно добавить уведомления в Slack, Telegram и т.д.
