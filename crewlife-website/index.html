@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrewLife - Ваши запросы — наш приоритет</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Современный веб-сайт для подачи заявок на командировочные рейсы, разработанный специально для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles/crewlife.css" as="style">
+    <link rel="preload" href="scripts/crewlife.js" as="script">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/crewlife.css?v=2.3.0">
+    <link rel="stylesheet" href="styles/performance.css">
+    <link rel="stylesheet" href="styles/accessibility.css">
+    <link rel="stylesheet" href="styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/mobile-advanced.css">
+    
+    <!-- Scripts -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/performance.js"></script>
+    <script src="scripts/pwa.js"></script>
+    <script src="scripts/accessibility.js"></script>
+    <script src="scripts/mobile-enhancements.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <button class="header-btn login-btn temporarily-disabled" id="loginBtn">Войти</button>
+                    <a href="pages/register" class="header-btn register-btn temporarily-disabled" id="registerBtn">Регистрация</a>
+                    <span class="registration-notice">Регистрация временно недоступна</span>
+                    <button class="header-btn dashboard-btn" id="dashboardBtn" style="display: none;">Панель управления</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                
+                <!-- Мобильное меню -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <div class="mobile-menu-content">
+                        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть" aria-label="Открыть меню">&times;</button>
+                        <nav class="mobile-nav" role="navigation">
+                            <a href="#" class="mobile-nav-link temporarily-disabled" id="mobileLoginLink">Войти</a>
+                            <a href="pages/register" class="mobile-nav-link temporarily-disabled" id="mobileRegisterLink">Регистрация</a>
+                            <span class="mobile-registration-notice">Регистрация временно недоступна</span>
+                            <a href="#" class="mobile-nav-link" id="mobileDashboardLink" style="display: none;">Панель управления</a>
+                            <a href="pages/help" class="mobile-nav-link">Помощь</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная секция (Интро) -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                    </svg>
+                </div>
+                <h1 class="hero-title">CrewLife</h1>
+                <p class="hero-subtitle">Ваши запросы — наш приоритет. Просто и быстро.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages">
+        <div class="container">
+            <div class="advantages-grid">
+                <div class="advantage-card card-animated fade-in" data-delay="100">
+                    <div class="advantage-icon icon-animated">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title">Простая подача</h3>
+                    <p class="advantage-description">Интуитивно понятный интерфейс для быстрого оформления запросов без лишних сложностей</p>
+                </div>
+
+                <div class="advantage-card card-animated fade-in" data-delay="200">
+                    <div class="advantage-icon icon-animated">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title">Быстрый ответ</h3>
+                    <p class="advantage-description">Мгновенная обработка ваших запросов с уведомлениями о статусе в реальном времени</p>
+                </div>
+
+                <div class="advantage-card card-animated fade-in" data-delay="300">
+                    <div class="advantage-icon icon-animated">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.325 4.317C10.751 3.901 11.377 3.901 11.803 4.317L13.707 6.221C14.133 6.647 14.133 7.273 13.707 7.699L12.707 8.699C12.281 9.125 11.655 9.125 11.229 8.699L9.325 6.795C8.899 6.369 8.899 5.743 9.325 5.317L10.325 4.317ZM8.707 7.121L10.611 9.025C11.037 9.451 11.037 10.077 10.611 10.503L9.611 11.503C9.185 11.929 8.559 11.929 8.133 11.503L6.229 9.599C5.803 9.173 5.803 8.547 6.229 8.121L7.229 7.121H8.707ZM6.707 10.121L8.611 12.025C9.037 12.451 9.037 13.077 8.611 13.503L7.611 14.503C7.185 14.929 6.559 14.929 6.133 14.503L4.229 12.599C3.803 12.173 3.803 11.547 4.229 11.121L5.229 10.121H6.707Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <h3 class="advantage-title">Прозрачная система</h3>
+                    <p class="advantage-description">Полная прозрачность процесса обработки запросов с возможностью отслеживания статуса</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="0" id="usersCount">0</div>
+                    <div class="stat-label">Нас уже</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="0" id="requestsCount">0</div>
+                    <div class="stat-label">Количество поданных заявок</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы пользователей -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title text-animated">Что говорят наши пользователи</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card card-animated slide-in-left" data-delay="100">
+                    <div class="testimonial-content">
+                        <div class="testimonial-text">
+                            "Очень удобная система! Подача заявок стала намного проще и быстрее. Рекомендую всем коллегам!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="7" r="4" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Анна Петрова</div>
+                                <div class="author-position">Бортпроводник</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card card-animated fade-in" data-delay="200">
+                    <div class="testimonial-content">
+                        <div class="testimonial-text">
+                            "Отличное приложение! Все заявки обрабатываются быстро, интерфейс интуитивно понятный."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="7" r="4" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Михаил Соколов</div>
+                                <div class="author-position">Старший бортпроводник</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card card-animated slide-in-right" data-delay="300">
+                    <div class="testimonial-content">
+                        <div class="testimonial-text">
+                            "Наконец-то современная система! Экономит много времени на оформлении документов."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="7" r="4" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Елена Козлова</div>
+                                <div class="author-position">Инструктор-проводник</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопки запросов -->
+    <section class="requests">
+        <div class="container">
+            <h2 class="requests-title text-animated">Выберите тип запроса</h2>
+            <div class="requests-grid">
+                <a href="pages/flight-booking" class="request-btn btn-animated ripple-effect magnetic" data-type="flight">
+                    <div class="btn-icon icon-animated">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="btn-text">Заказать рейс</span>
+                </a>
+
+                <a href="pages/aeroexpress" class="request-btn btn-animated ripple-effect magnetic" data-type="aeroexpress">
+                    <div class="btn-icon icon-animated">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 16C4 17.1046 4.89543 18 6 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H6C4.89543 6 4 6.89543 4 8V16ZM6 8H18V16H6V8ZM8 10V14H16V10H8Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="btn-text">Заказать билет на аэроэкспресс</span>
+                </a>
+
+                <a href="pages/hotel" class="request-btn btn-animated ripple-effect magnetic" data-type="hotel">
+                    <div class="btn-icon icon-animated">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 21H21V19L12 10L3 19V21ZM5 19H7V17H9V19H11V17H13V19H15V17H17V19H19V12.5L12 5.5L5 12.5V19Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="btn-text">Заказать гостиницу</span>
+                </a>
+
+                <a href="pages/weekend" class="request-btn btn-animated ripple-effect magnetic" data-type="weekend">
+                    <div class="btn-icon icon-animated">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM19 19H5V8H19V19ZM7 10V12H9V10H7ZM11 10V12H13V10H11ZM15 10V12H17V10H15Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="btn-text">Заказать выходные дни</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Обработка запроса...</p>
+        </div>
+    </div>
+
+
+
+    <!-- FAQ секция -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title text-animated">Часто задаваемые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item fade-in" data-delay="100">
+                    <button class="faq-question" data-faq="1">
+                        <span>Как быстро обрабатываются заявки?</span>
+                        <svg class="faq-icon icon-animated" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq-1">
+                        <p>Все заявки обрабатываются в течение 24 часов в рабочие дни. В выходные и праздничные дни обработка может занять до 48 часов.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-delay="200">
+                    <button class="faq-question" data-faq="2">
+                        <span>Можно ли отменить поданную заявку?</span>
+                        <svg class="faq-icon icon-animated" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq-2">
+                        <p>Да, вы можете отменить заявку в течение 2 часов после подачи, если она еще не была обработана. После обработки отмена возможна только через обращение в службу поддержки.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-delay="300">
+                    <button class="faq-question" data-faq="3">
+                        <span>Как отследить статус заявки?</span>
+                        <svg class="faq-icon icon-animated" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq-3">
+                        <p>Статус заявки можно отслеживать в личном кабинете в разделе "Мои заявки". Также вы будете получать уведомления об изменении статуса на email и в приложении.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-delay="400">
+                    <button class="faq-question" data-faq="4">
+                        <span>Что делать, если забыл пароль?</span>
+                        <svg class="faq-icon icon-animated" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq-4">
+                        <p>На странице входа нажмите "Забыли пароль?" и следуйте инструкциям. Новый пароль будет отправлен на вашу рабочую почту.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопка "Наверх" -->
+    <button class="scroll-to-top btn-animated pulse-glow" id="scrollToTop" title="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="scripts/crewlife.js?v=2.1.1"></script>
+</body>
+</html>

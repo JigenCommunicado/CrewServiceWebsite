@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>Профиль пользователя - CrewLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/crewlife.css?v=2.2.0">
+    <link rel="stylesheet" href="../styles/performance.css">
+        <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="../styles/profile.css?v=2.2.0">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/performance.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Пользователь</span>
+                        <button class="header-btn dashboard-btn" id="dashboardBtn">Панель управления</button>
+                        <button class="header-btn logout-btn" id="logoutBtn">Выйти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="profile-main" role="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs" role="navigation">
+                <a href="dashboard.html" class="breadcrumb-link">Панель управления</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Профиль</span>
+            </nav>
+
+            <!-- Заголовок страницы -->
+            <section class="page-header">
+                <h1 class="page-title">Профиль пользователя</h1>
+                <p class="page-subtitle">Управляйте своими данными и настройками</p>
+            </section>
+
+            <!-- Основная информация -->
+            <section class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-info">
+                            <h2 class="profile-name" id="profileName">Имя пользователя</h2>
+                            <p class="profile-position" id="profilePosition">Должность</p>
+                            <p class="profile-location" id="profileLocation">Локация</p>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number" id="totalRequests">0</span>
+                                    <span class="stat-label">Всего заявок</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number" id="memberSince">0</span>
+                                    <span class="stat-label">Дней в системе</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Настройки профиля -->
+            <section class="settings-section">
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="personal">Личные данные</button>
+                    <button class="settings-tab" data-tab="security">Безопасность</button>
+                </div>
+
+                <!-- Личные данные -->
+                <div class="settings-content active" id="personalTab">
+                    <div class="settings-card">
+                        <h3 class="settings-title">Личные данные</h3>
+                        <form class="settings-form" id="personalForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">ФИО</label>
+                                    <input type="text" class="form-input form-input-readonly" id="fullName" name="fullName" readonly>
+                                    <div class="form-hint">ФИО нельзя изменить после регистрации</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Табельный номер</label>
+                                    <input type="text" class="form-input form-input-readonly" id="employeeId" name="employeeId" readonly>
+                                    <div class="form-hint">Табельный номер нельзя изменить после регистрации</div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Должность</label>
+                                    <input type="text" class="form-input form-input-readonly" id="positionDisplay" readonly>
+                                    <div class="form-hint">Должность нельзя изменить после регистрации</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Локация</label>
+                                    <input type="text" class="form-input form-input-readonly" id="locationDisplay" readonly>
+                                    <div class="form-hint">Локацию нельзя изменить после регистрации</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Безопасность -->
+                <div class="settings-content" id="securityTab">
+                    <div class="settings-card">
+                        <h3 class="settings-title">Безопасность</h3>
+                        <form class="settings-form" id="securityForm">
+                            <div class="form-group">
+                                <label class="form-label">Текущий пароль</label>
+                                <input type="password" class="form-input" id="currentPassword" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Новый пароль</label>
+                                <input type="password" class="form-input" id="newPassword" name="newPassword" required>
+                                <div class="password-strength" id="passwordStrength"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Подтвердите новый пароль</label>
+                                <input type="password" class="form-input" id="confirmPassword" name="confirmPassword" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" id="cancelSecurity">Отмена</button>
+                                <button type="submit" class="btn-primary">Изменить пароль</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <!-- Статистика активности -->
+            <section class="activity-section">
+                <h3 class="section-title">Статистика активности</h3>
+                <div class="activity-stats">
+                    <div class="activity-chart">
+                        <canvas id="activityChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="activity-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Заявок за месяц:</span>
+                            <span class="summary-value" id="monthlyRequests">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Средний ответ:</span>
+                            <span class="summary-value" id="avgResponseTime">0 ч</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Одобрено:</span>
+                            <span class="summary-value" id="approvalRate">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Сохранение...</p>
+        </div>
+    </div>
+
+    <script src="../scripts/profile.js?v=2.4.0"></script>
+</body>
+</html>

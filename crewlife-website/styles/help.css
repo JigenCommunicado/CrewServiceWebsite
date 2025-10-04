@@ -1,0 +1,532 @@
+/* Стили для страницы помощи CrewLife */
+
+/* Переопределение стилей навигации */
+.header-btn:not(.login-btn):not(.register-btn):not(.logout-btn) {
+    background: transparent;
+    color: #333333;
+    border: 2px solid #E0E0E0;
+}
+
+.header-btn:not(.login-btn):not(.register-btn):not(.logout-btn):hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+    color: #FF4D4D;
+    transform: translateY(-2px);
+}
+
+/* Основной контент */
+.help-main {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-link {
+    color: #FF4D4D;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #E64444;
+}
+
+.breadcrumb-separator {
+    color: #999999;
+}
+
+.breadcrumb-current {
+    color: #666666;
+}
+
+/* Заголовок страницы */
+.page-header {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #666666;
+    margin: 0;
+}
+
+/* Поиск */
+.search-section {
+    margin: 40px 0;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.search-input {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    background: transparent;
+}
+
+.search-input::placeholder {
+    color: #999999;
+}
+
+.search-btn {
+    padding: 16px 24px;
+    background: #FF4D4D;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    background: #E64444;
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.suggestion-item {
+    padding: 12px 24px;
+    cursor: pointer;
+    border-bottom: 1px solid #F0F0F0;
+    transition: background 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background: #F8F9FA;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* Категории */
+.categories-section {
+    margin: 60px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.category-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: #FF4D4D;
+}
+
+.category-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.category-description {
+    color: #666666;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.category-count {
+    background: #F8F9FA;
+    color: #FF4D4D;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* FAQ */
+.faq-section {
+    margin: 60px 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-category {
+    margin-bottom: 40px;
+}
+
+.faq-category-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FF4D4D;
+}
+
+.faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #F8F9FA;
+}
+
+.faq-question h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+    flex: 1;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #FF4D4D;
+    transition: transform 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #FFF5F5;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #F8F9FA;
+}
+
+.faq-item.active .faq-answer {
+    padding: 20px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.faq-answer li {
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* Поддержка */
+.support-section {
+    margin: 60px 0;
+}
+
+.support-card {
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(255, 77, 77, 0.3);
+}
+
+.support-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.support-description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.support-contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.category-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .category-card {
+        padding: 20px;
+    }
+    
+    .faq-question {
+        padding: 15px;
+    }
+    
+    .faq-question h4 {
+        font-size: 1rem;
+    }
+    
+    .faq-answer {
+        padding: 0 15px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 15px;
+    }
+    
+    .support-card {
+        padding: 30px 20px;
+    }
+    
+    .support-contacts {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        border-radius: 15px;
+    }
+    
+    .search-input {
+        padding: 12px 16px;
+    }
+    
+    .search-btn {
+        padding: 12px 16px;
+        border-radius: 0 0 15px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .category-card {
+        padding: 15px;
+    }
+    
+    .faq-question {
+        padding: 12px;
+    }
+    
+    .faq-answer {
+        padding: 0 12px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 12px;
+    }
+    
+    .support-title {
+        font-size: 1.5rem;
+    }
+    
+    .support-description {
+        font-size: 1rem;
+    }
+}
+
+/* Скрытие категорий при поиске */
+.faq-category.hidden {
+    display: none;
+}
+
+.faq-item.hidden {
+    display: none;
+}
+
+/* Выделение найденного текста */
+.search-highlight {
+    background: #FFF3CD;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}

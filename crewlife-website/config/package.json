@@ -1,0 +1,33 @@
+{
+  "name": "crewlife-website",
+  "version": "1.0.0",
+  "description": "Система подачи заявок для бортпроводников",
+  "main": "crewlife.html",
+  "scripts": {
+    "start": "python3 -m http.server 3001",
+    "dev": "python3 -m http.server 3001",
+    "build": "echo 'Сайт готов к развертыванию'",
+    "serve": "./start.sh"
+  },
+  "keywords": [
+    "crewlife",
+    "airline",
+    "flight-attendant",
+    "booking",
+    "requests"
+  ],
+  "author": "CrewLife Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crewlife/website"
+  },
+  "homepage": "http://localhost:3001/crewlife.html",
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
+

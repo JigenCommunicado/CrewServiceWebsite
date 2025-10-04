@@ -1,0 +1,493 @@
+/* Улучшения доступности для CrewLife */
+
+/* Базовые стили для доступности */
+*:focus {
+    outline: 2px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+}
+
+/* Скрытие элементов только для screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Показ скрытых элементов при фокусе */
+.sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Улучшенные стили для кнопок */
+button, .btn, .request-btn, .header-btn {
+    position: relative;
+    min-height: 44px; /* Минимальный размер для сенсорных устройств */
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Состояния кнопок */
+button:focus-visible,
+.btn:focus-visible,
+.request-btn:focus-visible,
+.header-btn:focus-visible {
+    outline: 3px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+}
+
+button:active,
+.btn:active,
+.request-btn:active,
+.header-btn:active {
+    transform: translateY(1px);
+}
+
+/* Стили для ссылок */
+a {
+    color: var(--accent-color, #FF4D4D);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Стили для полей ввода */
+input, select, textarea {
+    min-height: 44px;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color, #E0E0E0);
+    border-radius: 8px;
+    font-size: 16px; /* Предотвращает зум на мобильных устройствах */
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-color, #FF4D4D);
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+}
+
+/* Стили для лейблов */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-primary, #333);
+    cursor: pointer;
+}
+
+/* Стили для групп полей */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+    color: var(--error-color, #dc3545);
+    font-size: 14px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.error-message::before {
+    content: "⚠️";
+    font-size: 16px;
+}
+
+/* Стили для успешных сообщений */
+.success-message {
+    color: var(--success-color, #28a745);
+    font-size: 14px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.success-message::before {
+    content: "✅";
+    font-size: 16px;
+}
+
+/* Стили для модальных окон */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color, rgba(0, 0, 0, 0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--bg-primary, #ffffff);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px var(--shadow-color, rgba(0, 0, 0, 0.1));
+}
+
+/* Кнопка закрытия модального окна */
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-secondary, #666);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: var(--bg-secondary, #f8f9fa);
+    color: var(--text-primary, #333);
+}
+
+.modal-close:focus-visible {
+    outline: 2px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+}
+
+/* Стили для навигации */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text-primary, #333);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    background: var(--bg-secondary, #f8f9fa);
+    color: var(--accent-color, #FF4D4D);
+}
+
+nav a:focus-visible {
+    outline: 2px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+}
+
+nav a[aria-current="page"] {
+    background: var(--accent-color, #FF4D4D);
+    color: white;
+}
+
+/* Стили для таблиц */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #E0E0E0);
+}
+
+th {
+    background: var(--bg-secondary, #f8f9fa);
+    font-weight: 600;
+    color: var(--text-primary, #333);
+}
+
+/* Стили для карточек */
+.card {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #E0E0E0);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px var(--shadow-color, rgba(0, 0, 0, 0.1));
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px var(--shadow-hover, rgba(0, 0, 0, 0.15));
+    transform: translateY(-2px);
+}
+
+.card:focus-within {
+    outline: 2px solid var(--accent-color, #FF4D4D);
+    outline-offset: 2px;
+}
+
+/* Стили для skip links */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--accent-color, #FF4D4D);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Стили для индикаторов загрузки */
+.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary, #666);
+}
+
+.loading::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color, #E0E0E0);
+    border-top: 2px solid var(--accent-color, #FF4D4D);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили для уведомлений */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-primary, #ffffff);
+    color: var(--text-primary, #333);
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color, rgba(0, 0, 0, 0.15));
+    z-index: 1000;
+    max-width: 400px;
+    border-left: 4px solid var(--accent-color, #FF4D4D);
+    animation: slideInRight 0.3s ease;
+}
+
+.notification.success {
+    border-left-color: var(--success-color, #28a745);
+}
+
+.notification.warning {
+    border-left-color: var(--warning-color, #ffc107);
+}
+
+.notification.error {
+    border-left-color: var(--error-color, #dc3545);
+}
+
+.notification.info {
+    border-left-color: var(--info-color, #17a2b8);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Стили для высокого контраста */
+@media (prefers-contrast: high) {
+    * {
+        border-color: currentColor !important;
+    }
+    
+    button, .btn, .request-btn, .header-btn {
+        border: 2px solid currentColor !important;
+    }
+    
+    input, select, textarea {
+        border: 2px solid currentColor !important;
+    }
+    
+    .card {
+        border: 2px solid currentColor !important;
+    }
+}
+
+/* Стили для уменьшенной анимации */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .loading::after {
+        animation: none;
+    }
+}
+
+/* Стили для печати */
+@media print {
+    .skip-link,
+    .modal,
+    .notification,
+    button:not(.print-button) {
+        display: none !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 12px;
+        color: #666;
+    }
+    
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+    /* Увеличиваем размеры кнопок для сенсорных устройств */
+    button, .btn, .request-btn, .header-btn {
+        min-height: 48px;
+        min-width: 48px;
+        font-size: 16px;
+    }
+    
+    /* Увеличиваем размеры полей ввода */
+    input, select, textarea {
+        min-height: 48px;
+        font-size: 16px;
+    }
+    
+    /* Улучшаем отступы для мобильных */
+    .modal {
+        padding: 10px;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+}
+
+/* Стили для очень маленьких экранов */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 16px;
+        margin: 10px;
+    }
+    
+    .notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+/* Стили для темной темы */
+[data-theme="dark"] .error-message {
+    color: #ff6b6b;
+}
+
+[data-theme="dark"] .success-message {
+    color: #4ade80;
+}
+
+[data-theme="dark"] .notification {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-left-color: var(--accent-color);
+}
+
+/* Стили для фокуса в темной теме */
+[data-theme="dark"] *:focus {
+    outline-color: var(--accent-color);
+}
+
+[data-theme="dark"] button:focus-visible,
+[data-theme="dark"] .btn:focus-visible,
+[data-theme="dark"] .request-btn:focus-visible,
+[data-theme="dark"] .header-btn:focus-visible {
+    outline-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.3);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+}

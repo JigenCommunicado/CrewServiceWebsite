@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демо админ-панели CrewLife</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .demo-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .demo-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .demo-link {
+            display: block;
+            padding: 30px;
+            background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 77, 77, 0.3);
+        }
+        .demo-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 77, 77, 0.4);
+        }
+        .demo-link h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        .demo-link p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        .features {
+            margin-top: 40px;
+        }
+        .features h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .feature h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .feature p {
+            color: #666;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">🚀 Админ-панель CrewLife v3.0.0</h1>
+            <p class="demo-subtitle">Современная система управления для авиационного персонала</p>
+        </div>
+
+        <div class="demo-links">
+            <a href="pages/admin.html" class="demo-link">
+                <h3>🔧 Админ-панель</h3>
+                <p>Полнофункциональная панель управления с дашбордом, управлением пользователями и аналитикой</p>
+            </a>
+            
+            <a href="index.html" class="demo-link">
+                <h3>🏠 Главная страница</h3>
+                <p>Основной сайт CrewLife с системой подачи заявок</p>
+            </a>
+            
+            <a href="pages/dashboard.html" class="demo-link">
+                <h3>👤 Панель пользователя</h3>
+                <p>Интерфейс для бортпроводников и сотрудников</p>
+            </a>
+        </div>
+
+        <div class="features">
+            <h2>✨ Возможности админ-панели</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Дашборд</h3>
+                    <p>Статистика в реальном времени, графики активности пользователей и заявок</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3>Управление пользователями</h3>
+                    <p>Добавление, редактирование, активация/деактивация пользователей</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📋</div>
+                    <h3>Управление заявками</h3>
+                    <p>Просмотр, обработка и управление всеми заявками системы</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Уведомления</h3>
+                    <p>Система уведомлений и оповещений для администраторов</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Настройки системы</h3>
+                    <p>Конфигурация параметров системы и безопасности</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Логи системы</h3>
+                    <p>Мониторинг активности и отладка системы</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #e3f2fd; border-radius: 10px; text-align: center;">
+            <h3 style="color: #1976d2; margin-bottom: 10px;">🎯 Технические особенности</h3>
+            <p style="color: #666; margin: 0;">
+                <strong>Адаптивный дизайн</strong> • <strong>PWA поддержка</strong> • <strong>Chart.js графики</strong> • 
+                <strong>Модальные окна</strong> • <strong>Поиск и фильтрация</strong> • <strong>Экспорт данных</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+

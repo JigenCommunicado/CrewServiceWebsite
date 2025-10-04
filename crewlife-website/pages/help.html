@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>Помощь и FAQ - CrewLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/crewlife.css">
+    <link rel="stylesheet" href="../styles/performance.css">
+        <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="../styles/help.css">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/performance.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <a href="/" class="header-btn">Главная</a>
+                    <a href="login.html" class="header-btn" id="loginBtn">Войти</a>
+                    <a href="register.html" class="header-btn" id="registerBtn">Регистрация</a>
+                    <a href="dashboard.html" class="header-btn" id="dashboardBtn" style="display: none;">Панель управления</a>
+                    <a href="profile.html" class="header-btn" id="profileBtn" style="display: none;">Профиль</a>
+                    <button class="header-btn logout-btn" id="logoutBtn" style="display: none;">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="help-main" role="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs" role="navigation">
+                <a href="/" class="breadcrumb-link">Главная</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Помощь</span>
+            </nav>
+
+            <!-- Заголовок страницы -->
+            <section class="page-header">
+                <h1 class="page-title">Помощь и часто задаваемые вопросы</h1>
+                <p class="page-subtitle">Найдите ответы на ваши вопросы и получите поддержку</p>
+            </section>
+
+            <!-- Поиск по помощи -->
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="helpSearch" placeholder="Поиск по вопросам и ответам..." class="search-input">
+                        <button class="search-btn" id="searchBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </section>
+
+            <!-- Категории помощи -->
+            <section class="categories-section">
+                <h2 class="section-title">Категории помощи</h2>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="getting-started">
+                        <div class="category-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Начало работы</h3>
+                        <p class="category-description">Основы использования системы</p>
+                        <span class="category-count">8 вопросов</span>
+                    </div>
+                    <div class="category-card" data-category="requests">
+                        <div class="category-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Заявки</h3>
+                        <p class="category-description">Создание и управление заявками</p>
+                        <span class="category-count">12 вопросов</span>
+                    </div>
+                    <div class="category-card" data-category="account">
+                        <div class="category-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Аккаунт</h3>
+                        <p class="category-description">Управление профилем и настройками</p>
+                        <span class="category-count">6 вопросов</span>
+                    </div>
+                    <div class="category-card" data-category="technical">
+                        <div class="category-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.75 17L9 20L12 19L15 20L14.25 17M3 13H21M5 17H19C20.1046 17 21 16.1046 21 15V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V15C3 16.1046 3.89543 17 5 17Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Техническая поддержка</h3>
+                        <p class="category-description">Решение технических проблем</p>
+                        <span class="category-count">10 вопросов</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="faq-section">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+                <div class="faq-container">
+                    <div class="faq-category" data-category="getting-started">
+                        <h3 class="faq-category-title">Начало работы</h3>
+                        <div class="faq-items">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как зарегистрироваться в системе?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для регистрации в системе:</p>
+                                    <ol>
+                                        <li>Нажмите кнопку "Регистрация" на главной странице</li>
+                                        <li>Заполните форму с вашими данными</li>
+                                        <li>Выберите должность и локацию</li>
+                                        <li>Нажмите "Зарегистрироваться"</li>
+                                    </ol>
+                                    <p>После регистрации вы автоматически войдете в систему и будете перенаправлены в панель управления.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как войти в систему?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для входа в систему используйте ваши учетные данные:</p>
+                                    <ul>
+                                        <li>Логин: ваш табельный номер</li>
+                                        <li>Пароль: пароль, установленный при регистрации</li>
+                                    </ul>
+                                    <p>Если вы забыли пароль, обратитесь к администратору системы.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Какие браузеры поддерживаются?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Система поддерживает все современные браузеры:</p>
+                                    <ul>
+                                        <li>Google Chrome (версия 90+)</li>
+                                        <li>Mozilla Firefox (версия 88+)</li>
+                                        <li>Safari (версия 14+)</li>
+                                        <li>Microsoft Edge (версия 90+)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category" data-category="requests">
+                        <h3 class="faq-category-title">Заявки</h3>
+                        <div class="faq-items">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как создать новую заявку?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для создания новой заявки:</p>
+                                    <ol>
+                                        <li>Войдите в панель управления</li>
+                                        <li>Нажмите на кнопку с нужным типом заявки в разделе "Быстрые действия"</li>
+                                        <li>Заполните форму заявки</li>
+                                        <li>Нажмите "Отправить заявку"</li>
+                                    </ol>
+                                    <p>После отправки заявка получит уникальный номер и будет передана на рассмотрение.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как отследить статус заявки?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Статус заявки можно отследить несколькими способами:</p>
+                                    <ul>
+                                        <li>В разделе "Мои заявки" в панели управления</li>
+                                        <li>Через уведомления в системе</li>
+                                        <li>По email (если включены email-уведомления)</li>
+                                    </ul>
+                                    <p>Статусы заявок: "Новая", "В обработке", "Одобрена", "Отклонена", "Выполнена".</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Можно ли отменить заявку?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Заявку можно отменить только в статусе "Новая". Для отмены:</p>
+                                    <ol>
+                                        <li>Найдите заявку в разделе "Мои заявки"</li>
+                                        <li>Нажмите кнопку "Отменить"</li>
+                                        <li>Подтвердите отмену</li>
+                                    </ol>
+                                    <p>После начала обработки заявка не может быть отменена.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category" data-category="account">
+                        <h3 class="faq-category-title">Аккаунт</h3>
+                        <div class="faq-items">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как изменить личные данные?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для изменения личных данных:</p>
+                                    <ol>
+                                        <li>Перейдите в раздел "Профиль"</li>
+                                        <li>Выберите вкладку "Личные данные"</li>
+                                        <li>Внесите необходимые изменения</li>
+                                        <li>Нажмите "Сохранить изменения"</li>
+                                    </ol>
+                                    <p>Некоторые данные (табельный номер) изменить нельзя.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как изменить пароль?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для изменения пароля:</p>
+                                    <ol>
+                                        <li>Перейдите в раздел "Профиль"</li>
+                                        <li>Выберите вкладку "Безопасность"</li>
+                                        <li>Введите текущий пароль</li>
+                                        <li>Введите новый пароль дважды</li>
+                                        <li>Нажмите "Изменить пароль"</li>
+                                    </ol>
+                                    <p>Пароль должен содержать минимум 6 символов.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category" data-category="technical">
+                        <h3 class="faq-category-title">Техническая поддержка</h3>
+                        <div class="faq-items">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Что делать, если страница не загружается?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Если страница не загружается, попробуйте:</p>
+                                    <ol>
+                                        <li>Обновить страницу (F5 или Ctrl+R)</li>
+                                        <li>Очистить кэш браузера</li>
+                                        <li>Проверить подключение к интернету</li>
+                                        <li>Попробовать другой браузер</li>
+                                        <li>Обратиться в техническую поддержку</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h4>Как включить уведомления?</h4>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для включения уведомлений:</p>
+                                    <ol>
+                                        <li>Перейдите в раздел "Профиль"</li>
+                                        <li>Выберите вкладку "Уведомления"</li>
+                                        <li>Включите нужные типы уведомлений</li>
+                                        <li>Нажмите "Сохранить настройки"</li>
+                                    </ol>
+                                    <p>Для push-уведомлений разрешите их в настройках браузера.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контакты поддержки -->
+            <section class="support-section">
+                <div class="support-card">
+                    <h2 class="support-title">Нужна дополнительная помощь?</h2>
+                    <p class="support-description">Если вы не нашли ответ на свой вопрос, обратитесь в службу поддержки</p>
+                    <div class="support-contacts">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M22 6L12 13L2 6" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Email поддержки</h4>
+                                <p>A.Sokolyanskiy@rossiya-airlines.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06679 2.16708 8.43376 2.48353C8.80073 2.79999 9.03996 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9586 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 21.99 16.92H22Z" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Телефон поддержки</h4>
+                                <p>+7 (999) 960-84-86</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#FF4D4D"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Время работы</h4>
+                                <p>Пн-Пт: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Поиск...</p>
+        </div>
+    </div>
+
+    <script src="../scripts/help.js"></script>
+</body>
+</html>

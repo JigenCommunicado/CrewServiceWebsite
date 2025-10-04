@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка на выходные дни - CrewLife</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Подача заявки на выходные дни для экипажа авиакомпании">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="../styles/crewlife.css?v=2.2.0">
+    <link rel="stylesheet" href="../styles/weekend.css?v=2.2.0">
+    <link rel="stylesheet" href="../styles/accessibility.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/performance.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/mobile-advanced.css">
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Заявка на выходные дни</h1>
+                <p class="page-subtitle">Подача заявки на выходные дни для экипажа авиакомпании</p>
+            </div>
+
+
+            <!-- Step 1: Personal Data -->
+            <div class="form-step active" id="step1">
+                <div class="form-container">
+                    <h2 class="step-title">Шаг 1: Ваши данные</h2>
+                    <form class="weekend-form" id="weekendForm">
+                        <div class="form-group">
+                            <label for="location" class="form-label">Выберите вашу локацию:</label>
+                            <select id="location" name="location" class="form-select" required>
+                                <option value="">Выберите локацию</option>
+                                <option value="Москва">Москва (SVO, VKO, DME)</option>
+                                <option value="Санкт-Петербург">Санкт-Петербург (LED)</option>
+                                <option value="Красноярск">Красноярск (KJA)</option>
+                                <option value="Сочи">Сочи (AER)</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="department" class="form-label">Выберите ваше подразделение *</label>
+                            <select id="department" name="department" class="form-select" required>
+                                <option value="">Выберите подразделение</option>
+                                <option value="ОКЭ 1">ОКЭ 1</option>
+                                <option value="ОКЭ 2">ОКЭ 2</option>
+                                <option value="ОКЭ 3">ОКЭ 3</option>
+                                <option value="ОКЭ 4">ОКЭ 4</option>
+                                <option value="ОКЭ 5">ОКЭ 5</option>
+                                <option value="ОЛСиТ">ОЛСиТ</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position" class="form-label">Выберите вашу должность *</label>
+                            <select id="position" name="position" class="form-select" required>
+                                <option value="">Выберите должность</option>
+                                <option value="БП">БП</option>
+                                <option value="БП BS">БП BS</option>
+                                <option value="СБЭ">СБЭ</option>
+                                <option value="ИПБ">ИПБ</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">Укажите ваше ФИО:</label>
+                            <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Введите полное ФИО" required readonly>
+                            <div class="form-hint">Данные подтягиваются из профиля</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employeeId" class="form-label">Укажите ваш табельный номер:</label>
+                            <input type="text" id="employeeId" name="employeeId" class="form-input" placeholder="Введите табельный номер" required readonly>
+                            <div class="form-hint">Данные подтягиваются из профиля</div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="history.back()">Назад</button>
+                            <button type="button" class="btn btn-primary" id="nextStep1">Далее</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Step 2: Date Selection -->
+            <div class="form-step" id="step2">
+                <div class="form-container">
+                    <h2 class="step-title">Шаг 2: Выберите даты выходных дней</h2>
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button type="button" class="calendar-nav" id="prevMonth">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <h3 class="calendar-month" id="calendarMonth">Январь 2024</h3>
+                            <button type="button" class="calendar-nav" id="nextMonth">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                        <div class="selected-dates">
+                            <div class="selected-date" id="selectedDate1" style="display: none;">
+                                <span class="date-label">Первая дата:</span>
+                                <span class="date-value" id="dateValue1"></span>
+                                <button type="button" class="remove-date" data-date="1">×</button>
+                            </div>
+                            <div class="selected-date" id="selectedDate2" style="display: none;">
+                                <span class="date-label">Вторая дата:</span>
+                                <span class="date-value" id="dateValue2"></span>
+                                <button type="button" class="remove-date" data-date="2">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="prevStep2">Назад</button>
+                        <button type="button" class="btn btn-primary" id="nextStep2">Далее</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Review and Submit -->
+            <div class="form-step" id="step3">
+                <div class="form-container">
+                    <h2 class="step-title">Шаг 3: Проверьте введенные данные</h2>
+                    <div class="review-container">
+                        <div class="review-section">
+                            <h3 class="review-section-title">Ваши данные</h3>
+                            <div class="review-item">
+                                <span class="review-label">Локация:</span>
+                                <span class="review-value" id="reviewLocation"></span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Подразделение:</span>
+                                <span class="review-value" id="reviewDepartment"></span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Должность:</span>
+                                <span class="review-value" id="reviewPosition"></span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">ФИО:</span>
+                                <span class="review-value" id="reviewFullName"></span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Табельный номер:</span>
+                                <span class="review-value" id="reviewEmployeeId"></span>
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <h3 class="review-section-title">Выбранные даты</h3>
+                            <div class="review-item">
+                                <span class="review-label">Даты выходных:</span>
+                                <span class="review-value" id="reviewDates"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="editData">Изменить</button>
+                        <button type="button" class="btn btn-primary" id="submitWeekend">Отправить заявку</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Обработка заявки...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Заявка отправлена!</h3>
+                <button class="modal-close" id="closeSuccessModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Ваша заявка на выходные дни успешно отправлена и будет рассмотрена в ближайшее время.</p>
+                <p>Вы получите уведомление о статусе заявки.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="goToDashboard">Перейти в панель управления</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/weekend.js?v=2.2.0"></script>
+</body>
+</html>

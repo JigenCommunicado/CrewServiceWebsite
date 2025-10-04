@@ -1,0 +1,266 @@
+/* Оптимизация производительности для CrewLife */
+
+/* Отключение анимаций для пользователей с предпочтением reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Дополнительные оптимизации для reduced motion */
+.reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* Оптимизация для медленных соединений */
+.slow-connection * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* Оптимизация для сенсорных устройств */
+.touch-device .advantage-card:hover,
+.touch-device .request-btn:hover,
+.touch-device .testimonial-card:hover {
+    transform: none !important;
+}
+
+.touch-device .advantage-card:active,
+.touch-device .request-btn:active,
+.touch-device .testimonial-card:active {
+    transform: scale(0.98) !important;
+}
+
+/* Ленивая загрузка изображений */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
+
+/* Оптимизация рендеринга */
+.will-change-transform {
+    will-change: transform;
+}
+
+.will-change-opacity {
+    will-change: opacity;
+}
+
+/* GPU ускорение для анимаций */
+.advantage-card,
+.request-btn,
+.stat-item {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Оптимизация прокрутки */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+    /* Уменьшаем сложность анимаций на мобильных */
+    .advantage-card:hover,
+    .request-btn:hover {
+        transform: translateY(-5px) !important;
+    }
+    
+    /* Упрощаем тени */
+    .advantage-card,
+    .request-btn {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .advantage-card:hover,
+    .request-btn:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+}
+
+/* Оптимизация для очень маленьких экранов */
+@media (max-width: 480px) {
+    /* Отключаем сложные анимации */
+    .advantage-card,
+    .request-btn {
+        transition: none !important;
+    }
+    
+    .advantage-card:hover,
+    .request-btn:hover {
+        transform: none !important;
+    }
+}
+
+/* Оптимизация шрифтов */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Montserrat Light'), local('Montserrat-Light'),
+         url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_cJD3gnD_g.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Montserrat Regular'), local('Montserrat-Regular'),
+         url('https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm453xV4r3f.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'),
+         url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_Zp73gnD_g.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Montserrat Bold'), local('Montserrat-Bold'),
+         url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2') format('woff2');
+}
+
+/* Оптимизация критического CSS */
+.hero {
+    contain: layout style paint;
+}
+
+.advantages {
+    contain: layout style;
+}
+
+.requests {
+    contain: layout style;
+}
+
+/* Оптимизация для печати */
+@media print {
+    .header,
+    .scroll-to-top,
+    .loading-overlay,
+    .modal {
+        display: none !important;
+    }
+    
+    .hero,
+    .advantages,
+    .requests {
+        break-inside: avoid;
+    }
+    
+    * {
+        color: black !important;
+        background: white !important;
+    }
+}
+
+/* Оптимизация для высокого DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-icon,
+    .advantage-icon,
+    .btn-icon {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+
+/* Оптимизация для контрастности */
+@media (prefers-contrast: high) {
+    .request-btn {
+        border: 2px solid #000000;
+    }
+    
+    .advantage-card {
+        border: 2px solid #000000;
+    }
+    
+    .header-btn {
+        border: 2px solid #000000;
+    }
+}
+
+/* Оптимизация для фокуса */
+*:focus {
+    outline: 2px solid #FF4D4D;
+    outline-offset: 2px;
+}
+
+/* Скрытие элементов для screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Оптимизация для анимаций */
+@media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+        animation: fadeIn 0.6s ease forwards;
+    }
+    
+    .slide-up {
+        animation: slideUp 0.6s ease forwards;
+    }
+    
+    .scale-in {
+        animation: scaleIn 0.4s ease forwards;
+    }
+}
+
+/* Критические анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

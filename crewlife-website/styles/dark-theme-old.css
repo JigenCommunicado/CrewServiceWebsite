@@ -1,0 +1,458 @@
+/* Dark Theme Styles */
+:root {
+    /* Light theme colors (default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --accent-color: #FF4D4D;
+    --accent-hover: #FF6B6B;
+    --card-bg: #ffffff;
+    --input-bg: #fafafa;
+    --header-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    /* Dark theme colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #808080;
+    --border-color: #404040;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --accent-color: #FF4D4D;
+    --accent-hover: #FF6B6B;
+    --card-bg: #2d2d2d;
+    --input-bg: #404040;
+    --header-bg: #1a1a1a;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    width: 50px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    margin-right: 15px;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.theme-icon {
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.theme-icon.sun-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.theme-icon.moon-icon {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+[data-theme="dark"] .theme-icon.sun-icon {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+[data-theme="dark"] .theme-icon.moon-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Mobile Theme Toggle */
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-theme-toggle-btn {
+    width: 45px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.theme-toggle-label {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Apply theme colors to existing elements */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force dark theme for all main sections */
+[data-theme="dark"] body {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .main-content {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .container {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+}
+
+[data-theme="dark"] .requests {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .testimonials {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .faq {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .features {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .stats {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .footer {
+    background-color: #2d2d2d !important;
+}
+
+/* Force all sections to be dark */
+[data-theme="dark"] section {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .section {
+    background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .content-section {
+    background-color: #1a1a1a !important;
+}
+
+/* Override any white backgrounds */
+[data-theme="dark"] .testimonial {
+    background-color: #2d2d2d !important;
+}
+
+[data-theme="dark"] .feature-card {
+    background-color: #2d2d2d !important;
+}
+
+[data-theme="dark"] .faq-item {
+    background-color: #2d2d2d !important;
+}
+
+/* Force dark backgrounds for all elements */
+[data-theme="dark"] .testimonials .container,
+[data-theme="dark"] .requests .container,
+[data-theme="dark"] .features .container,
+[data-theme="dark"] .faq .container,
+[data-theme="dark"] .stats .container {
+    background-color: #1a1a1a !important;
+}
+
+/* Override any remaining white backgrounds */
+[data-theme="dark"] .testimonial,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .faq-item {
+    background-color: #2d2d2d !important;
+}
+
+/* Fix logo SVG - prevent black square */
+[data-theme="dark"] .logo-icon svg,
+[data-theme="dark"] .logo-icon svg path {
+    fill: #FF4D4D !important;
+    background: transparent !important;
+}
+
+[data-theme="dark"] .logo-icon {
+    background: transparent !important;
+}
+
+/* Fix theme toggle button */
+[data-theme="dark"] .theme-toggle {
+    background: #404040 !important;
+    border-color: #666666 !important;
+}
+
+/* Fix header buttons in dark theme */
+[data-theme="dark"] .header-btn {
+    background: #404040 !important;
+    color: #ffffff !important;
+    border-color: #666666 !important;
+}
+
+[data-theme="dark"] .header-btn:hover {
+    background: #FF4D4D !important;
+    color: #ffffff !important;
+    border-color: #FF4D4D !important;
+}
+
+.header {
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.logo-text {
+    color: var(--text-primary);
+}
+
+.header-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+/* Light theme - original white and red buttons */
+[data-theme="light"] .header-btn {
+    background: white;
+    color: #333333;
+    border: 2px solid #e0e0e0;
+}
+
+[data-theme="light"] .header-btn:hover {
+    background: #FF4D4D;
+    color: white;
+    border-color: #FF4D4D;
+}
+
+/* Dark theme - dark buttons */
+[data-theme="dark"] .header-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="dark"] .header-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.mobile-menu {
+    background-color: var(--header-bg);
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.mobile-nav-link {
+    color: var(--text-primary);
+}
+
+.mobile-nav-link:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--accent-color);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.hero-title {
+    color: var(--text-primary);
+}
+
+.hero-subtitle {
+    color: var(--text-secondary);
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+}
+
+.request-btn {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+/* Light theme - original red gradient buttons */
+[data-theme="light"] .request-btn {
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme - same red gradient but with dark shadow */
+[data-theme="dark"] .request-btn {
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.testimonial-text {
+    color: var(--text-primary);
+}
+
+.testimonial-author {
+    color: var(--text-secondary);
+}
+
+.testimonial-position {
+    color: var(--text-muted);
+}
+
+.faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.faq-question {
+    color: var(--text-primary);
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+}
+
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text {
+    color: var(--text-secondary);
+}
+
+/* Form elements */
+.form-input,
+.form-select,
+.form-textarea {
+    background: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: var(--accent-color);
+    background: var(--card-bg);
+}
+
+.form-label {
+    color: var(--text-primary);
+}
+
+/* Cards and containers */
+.container {
+    background-color: transparent;
+}
+
+.main-content {
+    background-color: var(--bg-primary);
+}
+
+/* Force dark theme for specific elements */
+[data-theme="dark"] .hero-title {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: #b3b3b3 !important;
+}
+
+[data-theme="dark"] .requests-title {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .testimonials-title {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .faq-title {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .stats-number {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .stats-label {
+    color: #b3b3b3 !important;
+}
+
+[data-theme="dark"] .feature-title {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .feature-description {
+    color: #b3b3b3 !important;
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Registration notice */
+.registration-notice {
+    color: var(--text-muted);
+}
+
+.mobile-registration-notice {
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 45px;
+        height: 28px;
+        margin-right: 10px;
+    }
+    
+    .theme-icon {
+        font-size: 12px;
+    }
+}

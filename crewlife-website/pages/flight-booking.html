@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>Заказать рейс - CrewLife</title>
+    <link rel="stylesheet" href="../styles/crewlife.css">
+    <link rel="stylesheet" href="../styles/performance.css">
+    <link rel="stylesheet" href="../styles/flight-booking.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="../styles/mobile-advanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/performance.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Заголовок -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <button class="header-btn login-btn" id="loginBtn">Войти</button>
+                    <button class="header-btn register-btn" id="registerBtn">Регистрация</button>
+                    <button class="header-btn logout-btn" id="logoutBtn" style="display: none;">Выйти</button>
+                    <button class="header-btn dashboard-btn" id="dashboardBtn" style="display: none;">Панель управления</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <span class="mobile-menu-title">Меню</span>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть" aria-label="Открыть меню">&times;</button>
+            </div>
+            <div class="mobile-menu-links">
+                <a href="/" class="mobile-nav-link">Главная</a>
+                <a href="dashboard.html" class="mobile-nav-link" id="mobileDashboardLink" style="display: none;">Панель управления</a>
+                <a href="profile.html" class="mobile-nav-link" id="mobileProfileLink" style="display: none;">Профиль</a>
+                <a href="help.html" class="mobile-nav-link">Помощь</a>
+                <a href="login.html" class="mobile-nav-link" id="mobileLoginLink">Войти</a>
+                <a href="register.html" class="mobile-nav-link" id="mobileRegisterLink">Регистрация</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка мобильного меню -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Основной контент -->
+    <main class="main-content" role="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs" role="navigation">
+                <a href="/" class="breadcrumb-link">Главная</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Заказать рейс</span>
+            </nav>
+
+            <!-- Заголовок страницы -->
+            <div class="page-header">
+                <h1 class="page-title">Заказать рейс</h1>
+                <p class="page-description">Заполните форму для подачи заявки на рейс</p>
+            </div>
+
+            <!-- Форма заказа рейса -->
+            <div class="flight-booking-container">
+                <form id="flightBookingForm" class="flight-booking-form">
+                    <!-- Шаг 1: Основная информация -->
+                    <div class="form-step active" id="step1">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Основная информация</div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="location">Выберите вашу локацию *</label>
+                                <select id="location" name="location" required data-title="Выберите локацию">
+                                    <option value="">Выберите локацию</option>
+                                    <option value="Москва">Москва</option>
+                                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                    <option value="Красноярск">Красноярск</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="division">Выберите ваше подразделение *</label>
+                                <select id="division" name="division" required data-title="Выберите подразделение">
+                                    <option value="">Выберите подразделение</option>
+                                    <option value="ОКЭ 1">ОКЭ 1</option>
+                                    <option value="ОКЭ 2">ОКЭ 2</option>
+                                    <option value="ОКЭ 3">ОКЭ 3</option>
+                                    <option value="ОКЭ 4">ОКЭ 4</option>
+                                    <option value="ОКЭ 5">ОКЭ 5</option>
+                                    <option value="ОЛСиТ">ОЛСиТ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="position">Выберите вашу должность *</label>
+                                <select id="position" name="position" required data-title="Выберите должность">
+                                    <option value="">Выберите должность</option>
+                                    <option value="БП">БП</option>
+                                    <option value="БП BS">БП BS</option>
+                                    <option value="СБЭ">СБЭ</option>
+                                    <option value="ИПБ">ИПБ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullName">Укажите ваше ФИО *</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Введите ваше ФИО" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="employeeId">Укажите ваш табельный номер *</label>
+                                <input type="text" id="employeeId" name="employeeId" placeholder="Введите табельный номер" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 2: Детали рейса -->
+                    <div class="form-step" id="step2">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Детали рейса</div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="direction">Выберите направление *</label>
+                                <select id="direction" name="direction" required data-title="Выберите направление">
+                                    <option value="">Выберите направление</option>
+                                    <option value="Анадырь">Анадырь</option>
+                                    <option value="Благовещенск">Благовещенск</option>
+                                    <option value="Владивосток">Владивосток</option>
+                                    <option value="Красноярск">Красноярск</option>
+                                    <option value="Магадан">Магадан</option>
+                                    <option value="Нижний Новгород">Нижний Новгород</option>
+                                    <option value="Самара">Самара</option>
+                                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                    <option value="Уфа">Уфа</option>
+                                    <option value="Хабаровск">Хабаровск</option>
+                                    <option value="Южно-Сахалинск">Южно-Сахалинск</option>
+                                    <option value="Варадеро">Варадеро</option>
+                                    <option value="Хургада">Хургада</option>
+                                    <option value="Шарм-Эль-Шейх">Шарм-Эль-Шейх</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="departureDate">Выберите дату для рейса *</label>
+                                <div class="date-picker-container">
+                                    <input type="text" id="departureDate" name="departureDate" placeholder="дд.мм.гггг" readonly required>
+                                    <button type="button" class="date-picker-btn" id="datePickerBtn">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.6947 13.7H15.7037M15.6947 16.7H15.7037M11.9955 13.7H12.0045M11.9955 16.7H12.0045M8.29431 13.7H8.30329M8.29431 16.7H8.30329" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- Кастомный календарь -->
+                                <div class="custom-calendar" id="customCalendar">
+                                    <div class="calendar-header">
+                                        <button type="button" class="calendar-nav-btn" id="prevMonth">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="calendar-month-year" id="calendarMonthYear">Сентябрь 2025</div>
+                                        <button type="button" class="calendar-nav-btn" id="nextMonth">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="calendar-weekdays">
+                                        <div class="weekday">Пн</div>
+                                        <div class="weekday">Вт</div>
+                                        <div class="weekday">Ср</div>
+                                        <div class="weekday">Чт</div>
+                                        <div class="weekday">Пт</div>
+                                        <div class="weekday">Сб</div>
+                                        <div class="weekday">Вс</div>
+                                    </div>
+                                    <div class="calendar-days" id="calendarDays">
+                                        <!-- Дни будут генерироваться через JavaScript -->
+                                    </div>
+                                    <div class="calendar-footer">
+                                        <button type="button" class="calendar-action-btn" id="clearDate">Очистить</button>
+                                        <button type="button" class="calendar-action-btn" id="todayDate">Сегодня</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="wishes">Укажите ваши пожелания</label>
+                                <textarea id="wishes" name="wishes" placeholder="Введите ваши пожелания (необязательно)" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 3: Подтверждение -->
+                    <div class="form-step" id="step3">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Подтверждение данных</div>
+                        </div>
+                        
+                        <div class="confirmation-summary">
+                            <h4>Проверьте введенные данные:</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <strong>Локация:</strong>
+                                    <span id="summaryLocation"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Подразделение:</strong>
+                                    <span id="summaryDivision"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Должность:</strong>
+                                    <span id="summaryPosition"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>ФИО:</strong>
+                                    <span id="summaryFullName"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Табельный номер:</strong>
+                                    <span id="summaryEmployeeId"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Направление:</strong>
+                                    <span id="summaryDirection"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Дата рейса:</strong>
+                                    <span id="summaryDepartureDate"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <strong>Пожелания:</strong>
+                                    <span id="summaryWishes"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Навигация по шагам -->
+                <div class="form-navigation">
+                    <button type="button" class="btn-secondary" id="prevStep" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Назад
+                    </button>
+                    <button type="button" class="btn-primary" id="nextStep">
+                        Далее
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="btn-secondary" id="editFlight" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.5 2.5C18.8978 2.10218 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10218 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10218 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Изменить
+                    </button>
+                    <button type="button" class="btn-primary" id="submitFlight" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Отправить заявку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-text">Обработка запроса...</p>
+        </div>
+    </div>
+
+    <!-- Кнопка "Наверх" -->
+    <button class="scroll-to-top" id="scrollToTop" title="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="../scripts/api-client.js?v=1.0.0"></script>
+    <script src="../scripts/flight-booking-api.js?v=1.0.0"></script>
+    <script src="../scripts/flight-booking.js?v=2.2.0"></script>
+</body>
+</html>
+
+</html>

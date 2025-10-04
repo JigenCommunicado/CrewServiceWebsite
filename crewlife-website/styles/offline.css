@@ -1,0 +1,392 @@
+/* Стили для офлайн страницы CrewLife */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #333;
+}
+
+.offline-container {
+    max-width: 500px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.offline-content {
+    padding: 40px;
+    text-align: center;
+}
+
+/* Логотип */
+.offline-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FF4D4D;
+    margin: 0;
+}
+
+/* Иконка офлайн режима */
+.offline-icon {
+    margin: 30px 0;
+    opacity: 0.7;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Заголовок и описание */
+.offline-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.offline-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Статус подключения */
+.connection-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+}
+
+.status-indicator.offline {
+    background: #dc3545;
+}
+
+.status-indicator.online {
+    background: #28a745;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0.3;
+    }
+}
+
+.status-text {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Доступные функции */
+.offline-features {
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #FF4D4D;
+}
+
+.offline-features h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+}
+
+.features-list li {
+    padding: 8px 0;
+    color: #666;
+    position: relative;
+    padding-left: 25px;
+}
+
+.features-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Кнопки действий */
+.offline-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.retry-btn,
+.home-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 150px;
+    justify-content: center;
+}
+
+.retry-btn {
+    background: #FF4D4D;
+    color: white;
+}
+
+.retry-btn:hover {
+    background: #e04444;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+}
+
+.home-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.home-btn:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+}
+
+.retry-btn:active,
+.home-btn:active {
+    transform: translateY(0);
+}
+
+/* Информация о приложении */
+.offline-info {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.app-version {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.offline-note {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Анимация загрузки */
+.loading-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #FF4D4D;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-animation p {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .offline-container {
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .offline-content {
+        padding: 30px 20px;
+    }
+    
+    .logo-text {
+        font-size: 28px;
+    }
+    
+    .offline-title {
+        font-size: 20px;
+    }
+    
+    .offline-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .retry-btn,
+    .home-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .offline-content {
+        padding: 20px 15px;
+    }
+    
+    .logo-text {
+        font-size: 24px;
+    }
+    
+    .offline-title {
+        font-size: 18px;
+    }
+    
+    .offline-description {
+        font-size: 14px;
+    }
+    
+    .retry-btn,
+    .home-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Анимации появления */
+.offline-content > * {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.offline-content > *:nth-child(1) { animation-delay: 0.1s; }
+.offline-content > *:nth-child(2) { animation-delay: 0.2s; }
+.offline-content > *:nth-child(3) { animation-delay: 0.3s; }
+.offline-content > *:nth-child(4) { animation-delay: 0.4s; }
+.offline-content > *:nth-child(5) { animation-delay: 0.5s; }
+.offline-content > *:nth-child(6) { animation-delay: 0.6s; }
+.offline-content > *:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Высокий контраст */
+@media (prefers-contrast: high) {
+    .offline-container {
+        border: 3px solid #000;
+    }
+    
+    .retry-btn,
+    .home-btn {
+        border: 2px solid #000;
+    }
+    
+    .connection-status {
+        border: 2px solid #000;
+    }
+    
+    .offline-features {
+        border: 2px solid #000;
+    }
+}

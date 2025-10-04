@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ Аэроэкспресса - CrewLife</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Заказ билетов на Аэроэкспресс для экипажа авиакомпании">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="../styles/crewlife.css?v=2.2.0">
+    <link rel="stylesheet" href="../styles/aeroexpress.css?v=2.2.0">
+    <link rel="stylesheet" href="../styles/accessibility.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/performance.css?v=2.1.0">
+    <link rel="stylesheet" href="../styles/mobile-advanced.css">
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Заказ Аэроэкспресса</h1>
+                <p class="page-description">Заполните форму для подачи заявки на билет аэроэкспресса</p>
+            </div>
+
+            <div class="aeroexpress-booking-container">
+                <form class="aeroexpress-form" id="aeroexpressForm">
+                    <div class="form-step active">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Основная информация</div>
+                        </div>
+                        
+                        <div class="form-fields-grid">
+                            <div class="form-group">
+                                <label for="location" class="form-label">Выберите вашу локацию *</label>
+                                <select id="location" name="location" class="form-input" required>
+                                    <option value="">Выберите локацию</option>
+                                    <option value="moscow">Москва</option>
+                                    <option value="spb">Санкт-Петербург</option>
+                                    <option value="ekaterinburg">Екатеринбург</option>
+                                    <option value="novosibirsk">Новосибирск</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department" class="form-label">Выберите ваше подразделение *</label>
+                                <select id="department" name="department" class="form-input" required>
+                                    <option value="">Выберите подразделение</option>
+                                    <option value="oke1">ОКЭ 1</option>
+                                    <option value="oke2">ОКЭ 2</option>
+                                    <option value="oke3">ОКЭ 3</option>
+                                    <option value="oke4">ОКЭ 4</option>
+                                    <option value="oke5">ОКЭ 5</option>
+                                    <option value="olsit">ОЛСиТ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="position" class="form-label">Выберите вашу должность *</label>
+                                <select id="position" name="position" class="form-input" required>
+                                    <option value="">Выберите должность</option>
+                                    <option value="bp">БП</option>
+                                    <option value="bp_bs">БП BS</option>
+                                    <option value="sbe">СБЭ</option>
+                                    <option value="ipb">ИПБ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Укажите ваше ФИО *</label>
+                                <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Введите ваше ФИО" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="employeeId" class="form-label">Укажите ваш табельный номер *</label>
+                                <input type="text" id="employeeId" name="employeeId" class="form-input" placeholder="Введите табельный номер" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" id="nextStepBtn">Далее ></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/aeroexpress.js?v=2.2.0"></script>
+</body>
+</html>

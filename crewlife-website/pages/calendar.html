@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>Календарь заявок - CrewLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/crewlife.css">
+    <link rel="stylesheet" href="../styles/performance.css">
+        <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="../styles/calendar.css">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/performance.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Пользователь</span>
+                        <a href="dashboard.html" class="header-btn dashboard-btn">Панель управления</a>
+                        <a href="requests.html" class="header-btn requests-btn">Заявки</a>
+                        <a href="profile.html" class="header-btn profile-btn">Профиль</a>
+                        <a href="help.html" class="header-btn help-btn">Помощь</a>
+                        <button class="header-btn logout-btn" id="logoutBtn">Выйти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="calendar-main" role="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs" role="navigation">
+                <a href="dashboard.html" class="breadcrumb-link">Панель управления</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Календарь</span>
+            </nav>
+
+            <!-- Заголовок страницы -->
+            <section class="page-header">
+                <h1 class="page-title">Календарь заявок</h1>
+                <p class="page-subtitle">Планирование и просмотр заявок по датам</p>
+            </section>
+
+            <!-- Панель управления календарем -->
+            <section class="calendar-controls">
+                <div class="calendar-header">
+                    <div class="calendar-navigation">
+                        <button class="nav-btn" id="prevMonth">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <h2 class="current-month" id="currentMonth">Сентябрь 2024</h2>
+                        <button class="nav-btn" id="nextMonth">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="calendar-actions">
+                        <button class="action-btn" id="todayBtn">Сегодня</button>
+                        <button class="action-btn" id="addEventBtn">Добавить событие</button>
+                    </div>
+                </div>
+
+                <!-- Фильтры календаря -->
+                <div class="calendar-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Тип заявки</label>
+                        <select class="filter-select" id="typeFilter">
+                            <option value="">Все типы</option>
+                            <option value="vacation">Отпуск</option>
+                            <option value="sick-leave">Больничный</option>
+                            <option value="business-trip">Командировка</option>
+                            <option value="overtime">Сверхурочные</option>
+                            <option value="equipment">Оборудование</option>
+                            <option value="training">Обучение</option>
+                            <option value="other">Прочее</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Статус</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">Все статусы</option>
+                            <option value="new">Новая</option>
+                            <option value="processing">В обработке</option>
+                            <option value="approved">Одобрена</option>
+                            <option value="rejected">Отклонена</option>
+                            <option value="completed">Выполнена</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Вид календаря</label>
+                        <select class="filter-select" id="viewFilter">
+                            <option value="month">Месяц</option>
+                            <option value="week">Неделя</option>
+                            <option value="day">День</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Календарь -->
+            <section class="calendar-section">
+                <div class="calendar-container">
+                    <!-- Заголовки дней недели -->
+                    <div class="calendar-weekdays">
+                        <div class="weekday">Пн</div>
+                        <div class="weekday">Вт</div>
+                        <div class="weekday">Ср</div>
+                        <div class="weekday">Чт</div>
+                        <div class="weekday">Пт</div>
+                        <div class="weekday">Сб</div>
+                        <div class="weekday">Вс</div>
+                    </div>
+
+                    <!-- Дни календаря -->
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Дни будут сгенерированы через JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Легенда -->
+            <section class="calendar-legend">
+                <h3 class="legend-title">Легенда</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color vacation"></div>
+                        <span>Отпуск</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color sick-leave"></div>
+                        <span>Больничный</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color business-trip"></div>
+                        <span>Командировка</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color overtime"></div>
+                        <span>Сверхурочные</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color equipment"></div>
+                        <span>Оборудование</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color training"></div>
+                        <span>Обучение</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color other"></div>
+                        <span>Прочее</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальное окно события -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Добавить событие</h3>
+                <button class="modal-close" id="eventModalClose" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="event-form" id="eventForm">
+                    <div class="form-group">
+                        <label class="form-label">Тип события</label>
+                        <select class="form-select" id="eventType" name="eventType" required>
+                            <option value="vacation">Отпуск</option>
+                            <option value="sick-leave">Больничный</option>
+                            <option value="business-trip">Командировка</option>
+                            <option value="overtime">Сверхурочные</option>
+                            <option value="equipment">Оборудование</option>
+                            <option value="training">Обучение</option>
+                            <option value="other">Прочее</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Название</label>
+                        <input type="text" class="form-input" id="eventTitle" name="eventTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Описание</label>
+                        <textarea class="form-textarea" id="eventDescription" name="eventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Дата начала</label>
+                            <input type="date" class="form-input" id="eventStartDate" name="eventStartDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Дата окончания</label>
+                            <input type="date" class="form-input" id="eventEndDate" name="eventEndDate" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Приоритет</label>
+                        <select class="form-select" id="eventPriority" name="eventPriority">
+                            <option value="low">Низкий</option>
+                            <option value="medium" selected>Средний</option>
+                            <option value="high">Высокий</option>
+                            <option value="urgent">Срочный</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelEvent">Отмена</button>
+                <button class="btn-primary" id="saveEvent">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно деталей события -->
+    <div class="modal" id="eventDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Детали события</h3>
+                <button class="modal-close" id="eventDetailsClose" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body" id="eventDetailsBody">
+                <!-- Детали события будут загружены через JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="closeEventDetails">Закрыть</button>
+                <button class="btn-primary" id="editEventBtn" style="display: none;">Редактировать</button>
+                <button class="btn-danger" id="deleteEventBtn" style="display: none;">Удалить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Загрузка календаря...</p>
+        </div>
+    </div>
+
+    <script src="../scripts/calendar.js"></script>
+</body>
+</html>

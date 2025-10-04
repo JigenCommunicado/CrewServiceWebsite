@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>История заявок - CrewLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/crewlife.css">
+    <link rel="stylesheet" href="../styles/performance.css">
+        <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <link rel="stylesheet" href="../styles/requests.css">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/performance.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">CrewLife</span>
+                </a>
+                <div class="header-buttons">
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Пользователь</span>
+                        <a href="dashboard.html" class="header-btn dashboard-btn">Панель управления</a>
+                        <a href="profile.html" class="header-btn profile-btn">Профиль</a>
+                        <a href="help.html" class="header-btn help-btn">Помощь</a>
+                        <button class="header-btn logout-btn" id="logoutBtn">Выйти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="requests-main" role="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs" role="navigation">
+                <a href="dashboard.html" class="breadcrumb-link">Панель управления</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">История заявок</span>
+            </nav>
+
+            <!-- Заголовок страницы -->
+            <section class="page-header">
+                <h1 class="page-title">История заявок</h1>
+                <p class="page-subtitle">Просмотр и управление всеми вашими заявками</p>
+            </section>
+
+            <!-- Статистика заявок -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="totalRequests">0</span>
+                            <span class="stat-label">Всего заявок</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="pendingRequests">0</span>
+                            <span class="stat-label">В обработке</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="approvedRequests">0</span>
+                            <span class="stat-label">Одобрено</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 14L2 6L0 8L10 18L22 6L20 4L10 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="completedRequests">0</span>
+                            <span class="stat-label">Выполнено</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Фильтры и поиск -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <!-- Поиск -->
+                    <div class="search-container">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Поиск по номеру заявки, описанию..." class="search-input">
+                            <button class="search-btn" id="searchBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Фильтры -->
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Статус</label>
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">Все статусы</option>
+                                <option value="new">Новая</option>
+                                <option value="processing">В обработке</option>
+                                <option value="approved">Одобрена</option>
+                                <option value="rejected">Отклонена</option>
+                                <option value="completed">Выполнена</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Тип заявки</label>
+                            <select class="filter-select" id="typeFilter">
+                                <option value="">Все типы</option>
+                                <option value="vacation">Отпуск</option>
+                                <option value="sick-leave">Больничный</option>
+                                <option value="business-trip">Командировка</option>
+                                <option value="overtime">Сверхурочные</option>
+                                <option value="equipment">Оборудование</option>
+                                <option value="training">Обучение</option>
+                                <option value="other">Прочее</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Период</label>
+                            <select class="filter-select" id="periodFilter">
+                                <option value="">Все время</option>
+                                <option value="today">Сегодня</option>
+                                <option value="week">Эта неделя</option>
+                                <option value="month">Этот месяц</option>
+                                <option value="quarter">Этот квартал</option>
+                                <option value="year">Этот год</option>
+                                <option value="custom">Выбрать период</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Сортировка</label>
+                            <select class="filter-select" id="sortFilter">
+                                <option value="newest">Сначала новые</option>
+                                <option value="oldest">Сначала старые</option>
+                                <option value="status">По статусу</option>
+                                <option value="type">По типу</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Дополнительные фильтры -->
+                    <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                        <div class="filter-group">
+                            <label class="filter-label">Дата от</label>
+                            <input type="date" class="filter-input" id="dateFrom">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Дата до</label>
+                            <input type="date" class="filter-input" id="dateTo">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Приоритет</label>
+                            <select class="filter-select" id="priorityFilter">
+                                <option value="">Все приоритеты</option>
+                                <option value="low">Низкий</option>
+                                <option value="medium">Средний</option>
+                                <option value="high">Высокий</option>
+                                <option value="urgent">Срочный</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки управления -->
+                    <div class="filter-actions">
+                        <button class="btn-secondary" id="clearFilters">Очистить фильтры</button>
+                        <button class="btn-secondary" id="toggleAdvanced">Расширенные фильтры</button>
+                        <button class="btn-primary" id="exportBtn">Экспорт</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Список заявок -->
+            <section class="requests-section">
+                <div class="requests-header">
+                    <h2 class="section-title">Заявки</h2>
+                    <div class="view-controls">
+                        <button class="view-btn active" id="tableViewBtn" data-view="table">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="view-btn" id="cardViewBtn" data-view="card">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3H21V21H3V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Табличное представление -->
+                <div class="requests-table-container" id="tableView">
+                    <table class="requests-table">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Тип</th>
+                                <th>Описание</th>
+                                <th>Статус</th>
+                                <th>Дата создания</th>
+                                <th>Приоритет</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTableBody">
+                            <!-- Заявки будут загружены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Карточное представление -->
+                <div class="requests-cards-container" id="cardView" style="display: none;">
+                    <div class="requests-cards" id="requestsCards">
+                        <!-- Заявки будут загружены через JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        <span id="paginationInfo">Показано 0 из 0 заявок</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" id="prevPage" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="pagination-pages" id="paginationPages">
+                            <!-- Страницы будут сгенерированы через JavaScript -->
+                        </div>
+                        <button class="pagination-btn" id="nextPage" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальное окно деталей заявки -->
+    <div class="modal" id="requestDetailsModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 class="modal-title">Детали заявки</h3>
+                <button class="modal-close" id="requestDetailsClose" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body" id="requestDetailsBody">
+                <!-- Детали заявки будут загружены через JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="closeRequestDetails">Закрыть</button>
+                <button class="btn-primary" id="editRequestBtn" style="display: none;">Редактировать</button>
+                <button class="btn-danger" id="cancelRequestBtn" style="display: none;">Отменить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Индикатор загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Загрузка заявок...</p>
+        </div>
+    </div>
+
+    <script src="../scripts/requests.js"></script>
+</body>
+</html>

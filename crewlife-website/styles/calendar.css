@@ -1,0 +1,638 @@
+/* Стили для календаря заявок CrewLife */
+
+/* Переопределение стилей навигации */
+.header-btn:not(.login-btn):not(.register-btn):not(.logout-btn) {
+    background: transparent;
+    color: #333333;
+    border: 2px solid #E0E0E0;
+}
+
+.header-btn:not(.login-btn):not(.register-btn):not(.logout-btn):hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+    color: #FF4D4D;
+    transform: translateY(-2px);
+}
+
+/* Основной контент */
+.calendar-main {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-link {
+    color: #FF4D4D;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #E64444;
+}
+
+.breadcrumb-separator {
+    color: #999999;
+}
+
+.breadcrumb-current {
+    color: #666666;
+}
+
+/* Заголовок страницы */
+.page-header {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #666666;
+    margin: 0;
+}
+
+/* Панель управления календарем */
+.calendar-controls {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 40px 0;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    background: #F8F9FA;
+    border: 2px solid #E0E0E0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333333;
+}
+
+.nav-btn:hover {
+    background: #FF4D4D;
+    border-color: #FF4D4D;
+    color: white;
+}
+
+.current-month {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+    min-width: 200px;
+    text-align: center;
+}
+
+.calendar-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background: #FF4D4D;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #E64444;
+}
+
+/* Фильтры календаря */
+.calendar-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333333;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #FF4D4D;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+}
+
+/* Календарь */
+.calendar-section {
+    margin: 40px 0;
+}
+
+.calendar-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 10px;
+}
+
+.weekday {
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: 600;
+    color: #666666;
+    background: #F8F9FA;
+    font-size: 0.9rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #E0E0E0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.calendar-day {
+    background: white;
+    min-height: 120px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.calendar-day:hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+}
+
+.calendar-day.other-month {
+    background: #F8F9FA;
+    color: #999999;
+}
+
+.calendar-day.today {
+    background: #FFF5F5;
+    border-color: #FF4D4D;
+}
+
+.calendar-day.today .day-number {
+    background: #FF4D4D;
+    color: white;
+}
+
+.day-number {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: #F8F9FA;
+    color: #333333;
+}
+
+.day-events {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.day-event {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.day-event:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.day-event.more {
+    background: #666666;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Цвета событий */
+.day-event.vacation {
+    background: #4CAF50;
+}
+
+.day-event.sick-leave {
+    background: #FF9800;
+}
+
+.day-event.business-trip {
+    background: #2196F3;
+}
+
+.day-event.overtime {
+    background: #9C27B0;
+}
+
+.day-event.equipment {
+    background: #607D8B;
+}
+
+.day-event.training {
+    background: #795548;
+}
+
+.day-event.other {
+    background: #9E9E9E;
+}
+
+/* Легенда */
+.calendar-legend {
+    margin: 40px 0;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.legend-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.legend-color.vacation {
+    background: #4CAF50;
+}
+
+.legend-color.sick-leave {
+    background: #FF9800;
+}
+
+.legend-color.business-trip {
+    background: #2196F3;
+}
+
+.legend-color.overtime {
+    background: #9C27B0;
+}
+
+.legend-color.equipment {
+    background: #607D8B;
+}
+
+.legend-color.training {
+    background: #795548;
+}
+
+.legend-color.other {
+    background: #9E9E9E;
+}
+
+/* Форма события */
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333333;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    padding: 12px 16px;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #FF4D4D;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Детали события */
+.event-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.detail-section {
+    margin-bottom: 25px;
+}
+
+.detail-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #FF4D4D;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #666666;
+}
+
+.detail-value {
+    color: #333333;
+}
+
+.detail-description {
+    background: #F8F9FA;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+    .calendar-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .calendar-navigation {
+        justify-content: center;
+    }
+    
+    .calendar-actions {
+        justify-content: center;
+    }
+    
+    .calendar-filters {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-day {
+        min-height: 80px;
+        padding: 5px;
+    }
+    
+    .day-event {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+    }
+    
+    .legend-items {
+        justify-content: center;
+    }
+    
+    .event-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 15px;
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 3px;
+    }
+    
+    .day-number {
+        font-size: 0.8rem;
+        padding: 2px 6px;
+    }
+    
+    .day-event {
+        font-size: 0.5rem;
+        padding: 1px 3px;
+    }
+    
+    .legend-items {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calendar-day {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.day-event {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Стили для кнопок в шапке */
+.requests-btn {
+    background: transparent;
+    color: #333333;
+    border: 2px solid #E0E0E0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.requests-btn:hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+    color: #FF4D4D;
+}
+
+/* Стили для пустого состояния */
+.empty-calendar {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666666;
+}
+
+.empty-calendar svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-calendar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.empty-calendar p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Стили для выделения выбранной даты */
+.calendar-day.selected {
+    background: #FFF5F5;
+    border-color: #FF4D4D;
+    box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.2);
+}
+
+/* Стили для перетаскивания */
+.day-event.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+.calendar-day.drag-over {
+    background: #FFF5F5;
+    border-color: #FF4D4D;
+    border-style: dashed;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrewLife">
+    <meta name="msapplication-TileColor" content="#FF4D4D">
+    <meta name="msapplication-config" content="../config/browserconfig.xml">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="../config/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/icons/icon-192x192.png">
+    <title>Вход в систему - CrewLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/login.css">
+        <link rel="stylesheet" href="../styles/accessibility.css">
+    <link rel="stylesheet" href="../styles/mobile-enhancements.css">
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/pwa.js"></script>
+        <script src="../scripts/accessibility.js"></script>
+    <script src="../scripts/mobile-enhancements.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <!-- Верхний заголовочный блок -->
+    <div class="header-section">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="header-text">
+                    <h1 class="header-title">Вход в систему</h1>
+                    <p class="header-subtitle">Подача заявок на командировочные рейсы</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной блок с формой -->
+    <div class="main-section">
+        <div class="container">
+            <div class="login-form-container">
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Логин:</label>
+                        <input type="text" id="username" name="username" class="form-input" placeholder="Введите ваш логин" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Пароль:</label>
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Введите ваш пароль" required>
+                    </div>
+
+                    <button type="submit" class="login-btn">Войти</button>
+
+                    <div class="register-link">
+                        <span class="register-text">Нет аккаунта?</span>
+                        <a href="#" class="register-link-text" id="registerLink">Зарегистрироваться</a>
+                    </div>
+
+                    <button type="button" class="home-btn" id="homeBtn">На главную</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../scripts/database.js?v=1.0.0"></script>
+    <script src="../scripts/init-test-data.js?v=1.0.0"></script>
+    <script src="../scripts/api-client.js?v=1.0.0"></script>
+    <script src="../scripts/login.js?v=2.2.0"></script>
+</body>
+</html>

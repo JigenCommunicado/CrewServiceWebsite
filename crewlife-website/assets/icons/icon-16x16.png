@@ -1,0 +1,35 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4D4D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Фон -->
+  <rect width="192" height="192" rx="24" fill="url(#gradient)"/>
+  
+  <!-- Иконка самолета -->
+  <g transform="translate(48, 48)">
+    <path d="M48 16L36 24L24 16L12 24L0 16L12 32L24 24L36 32L48 24L60 32L72 24L60 16L48 24L36 16L48 24L60 16L72 24L84 16L72 32L60 24L48 32L36 24L24 32L12 24L0 32L12 16L24 24L36 16L48 24Z" 
+          fill="white" 
+          opacity="0.1"/>
+    
+    <!-- Основной самолет -->
+    <path d="M24 8L20 12L16 8L12 12L8 8L12 16L16 12L20 16L24 12L28 16L32 12L28 8L24 12L20 8L24 12Z" 
+          fill="white" 
+          opacity="0.3"/>
+    
+    <!-- Центральный самолет -->
+    <path d="M36 20L32 24L28 20L24 24L20 20L24 28L28 24L32 28L36 24L40 28L44 24L40 20L36 24L32 20L36 24Z" 
+          fill="white" 
+          opacity="0.5"/>
+    
+    <!-- Главный самолет -->
+    <path d="M48 32L44 36L40 32L36 36L32 32L36 40L40 36L44 40L48 36L52 40L56 36L52 32L48 36L44 32L48 36Z" 
+          fill="white"/>
+  </g>
+  
+  <!-- Текст CrewLife -->
+  <text x="96" y="140" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">CrewLife</text>
+</svg>

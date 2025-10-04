@@ -1,0 +1,567 @@
+/* Стили для страницы бронирования гостиницы */
+
+/* Основные стили страницы */
+.page-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Стили для шапки */
+.header {
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: -0.5px;
+}
+
+/* Основной контент с отступом от шапки */
+.main-content {
+    margin-top: 80px;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.breadcrumb-link {
+    color: #FF4D4D;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #E64444;
+}
+
+.breadcrumb-separator {
+    color: #999;
+}
+
+.breadcrumb-current {
+    color: #333;
+    font-weight: 500;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* Контейнер формы */
+.booking-form-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.booking-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Секции формы */
+.form-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    border-radius: 2px;
+}
+
+/* Строки формы */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Группы полей */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    padding: 12px 16px;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #FF4D4D;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Чекбоксы */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.form-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #FF4D4D;
+    cursor: pointer;
+}
+
+.checkbox-text {
+    user-select: none;
+}
+
+/* Гости */
+.guests-container {
+    margin-bottom: 1.5rem;
+}
+
+.guest-item {
+    background: #F8F9FA;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E0E0E0;
+}
+
+.guest-item:last-child {
+    margin-bottom: 0;
+}
+
+.guest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.guest-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.remove-guest-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #FF4D4D;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.remove-guest-btn:hover {
+    background: #E64444;
+    transform: scale(1.1);
+}
+
+/* Кнопки */
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 77, 77, 0.4);
+    background: linear-gradient(135deg, #E64444 0%, #FF5555 100%);
+}
+
+.btn-secondary {
+    background: white;
+    color: #666;
+    border: 2px solid #E0E0E0;
+}
+
+.btn-secondary:hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+    color: #FF4D4D;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 77, 77, 0.2);
+}
+
+/* Действия формы */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #F0F0F0;
+}
+
+/* Специальные стили для гостиницы */
+.hotel-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.hotel-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #F8F9FA;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.hotel-feature svg {
+    width: 16px;
+    height: 16px;
+    color: #FF4D4D;
+}
+
+/* Стили для новых элементов */
+.form-hint {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+
+.date-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date-input {
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+.date-picker-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #FF4D4D;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.date-picker-btn:hover {
+    background: #E64444;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.date-picker-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Календарь */
+.custom-calendar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 4px;
+    padding: 1rem;
+    display: none;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.calendar-nav-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #F8F9FA;
+    color: #666;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.calendar-nav-btn:hover {
+    background: #FF4D4D;
+    color: white;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    padding: 0.5rem 0;
+}
+
+.calendar-day {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: #333;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.calendar-day:hover {
+    background: #FF4D4D;
+    color: white;
+}
+
+.calendar-day.selected {
+    background: #FF4D4D;
+    color: white;
+}
+
+.calendar-day.today {
+    background: #E3F2FD;
+    color: #1976D2;
+    font-weight: 600;
+}
+
+.calendar-day.disabled {
+    color: #CCC;
+    cursor: not-allowed;
+}
+
+.calendar-day.disabled:hover {
+    background: transparent;
+    color: #CCC;
+}
+
+.calendar-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E0E0E0;
+}
+
+.calendar-action-btn {
+    padding: 8px 16px;
+    border: 1px solid #E0E0E0;
+    background: white;
+    color: #666;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.calendar-action-btn:hover {
+    background: #F8F9FA;
+    border-color: #FF4D4D;
+    color: #FF4D4D;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .booking-form-container {
+        padding: 1.5rem;
+        margin: 0 -1rem 2rem;
+        border-radius: 0;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .hotel-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-form-container {
+        padding: 1rem;
+    }
+    
+    .page-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+}

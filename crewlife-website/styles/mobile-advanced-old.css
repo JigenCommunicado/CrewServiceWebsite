@@ -1,0 +1,1226 @@
+/* Продвинутые мобильные улучшения для CrewLife */
+
+/* 1. Улучшенная прокрутка для мобильных */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-top: 80px;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* 2. Улучшенные размеры для сенсорных устройств */
+button, .btn, .request-btn, .header-btn, .form-input, .form-select {
+    min-height: 48px;
+    min-width: 48px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+    padding: 12px 20px;
+    -webkit-tap-highlight-color: rgba(255, 77, 77, 0.2);
+    touch-action: manipulation;
+}
+
+/* 3. Улучшенная навигация */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    min-height: 60px;
+}
+
+/* 4. Мобильное меню с анимациями */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu.open .mobile-menu-content {
+    transform: translateX(0);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav {
+    padding: 80px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: 16px 20px;
+    background: #F8F9FA;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.mobile-nav-link:hover {
+    background: #FF4D4D;
+    color: white;
+    transform: translateX(5px);
+    border-color: #E64444;
+}
+
+.mobile-nav-link:active {
+    transform: scale(0.98);
+}
+
+/* 5. Улучшенные карточки */
+.advantage-card, .testimonial-card {
+    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.advantage-card::before, .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 77, 77, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.advantage-card:hover::before, .testimonial-card:hover::before {
+    left: 100%;
+}
+
+/* 6. Улучшенные кнопки запросов */
+.request-btn {
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 18px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.request-btn:active {
+    transform: scale(0.98);
+}
+
+.request-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.request-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* 7. Улучшенные модальные окна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+/* 8. Улучшенные формы */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 16px 20px;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: white;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #FF4D4D;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 9. Улучшенная прокрутка */
+.scroll-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #FF4D4D #F0F0F0;
+}
+
+.scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #F0F0F0;
+    border-radius: 3px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #FF4D4D;
+    border-radius: 3px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #E64444;
+}
+
+/* 10. Улучшенные анимации для мобильных */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        padding: 80px 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .advantages-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .requests-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .request-btn {
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .btn-icon {
+        margin-bottom: 10px;
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+}
+
+/* 11. Очень маленькие экраны */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .header-content {
+        padding: 10px 16px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .advantage-card, .testimonial-card {
+        padding: 20px 16px;
+    }
+    
+    .request-btn {
+        padding: 16px 20px;
+        min-height: 100px;
+        font-size: 16px;
+    }
+    
+    .modal-content {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+    
+    .mobile-menu-content {
+        width: 100%;
+    }
+    
+    .mobile-nav {
+        padding: 60px 20px 20px;
+    }
+}
+
+/* 12. Планшеты */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .requests-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .request-btn {
+        min-height: 140px;
+    }
+}
+
+/* 13. Большие экраны */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .requests-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+}
+
+/* 14. Сенсорные устройства */
+@media (hover: none) and (pointer: coarse) {
+    .advantage-card:hover,
+    .request-btn:hover,
+    .header-btn:hover,
+    .testimonial-card:hover {
+        transform: none;
+        box-shadow: initial;
+    }
+    
+    .advantage-card:active,
+    .request-btn:active,
+    .header-btn:active,
+    .testimonial-card:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+    
+    .mobile-nav-link:hover {
+        transform: none;
+    }
+    
+    .mobile-nav-link:active {
+        transform: scale(0.98);
+    }
+}
+
+/* 15. Улучшенные жесты и скроллинг свайпом */
+.swipe-container {
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-x;
+}
+
+.swipe-item {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: pan-x;
+}
+
+.swipe-item.swiping {
+    transition: none;
+}
+
+/* Мобильные улучшения без горизонтального свайпа */
+@media (max-width: 768px) {
+    /* Убираем горизонтальный скролл, возвращаем обычную сетку */
+    .cards-swipe-scroll,
+    .requests-swipe-scroll {
+        display: block;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .cards-swipe-content,
+    .requests-swipe-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0;
+    }
+    
+    .cards-swipe-item,
+    .requests-swipe-item {
+        width: 100%;
+        min-height: auto;
+    }
+    
+    /* Улучшенные выпадающие списки для мобильных */
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF4D4D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+        font-size: 16px; /* Предотвращает зум на iOS */
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: white;
+        min-height: 48px;
+        transition: all 0.3s ease;
+        width: 100%;
+        padding: 12px 40px 12px 16px;
+    }
+    
+    .mobile-picker.show {
+        transform: translateY(0);
+    }
+    
+    .mobile-picker-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 24px;
+        border-bottom: 2px solid #FF4D4D;
+        background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+        border-radius: 20px 20px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mobile-picker-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
+    .mobile-picker-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.5px;
+    }
+    
+    .mobile-picker-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mobile-picker-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    .mobile-picker-close:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Колесо прокрутки */
+    .mobile-picker-wheel {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 3px solid #FF4D4D;
+        border-right: 3px solid #FF4D4D;
+    }
+    
+    .mobile-picker-wheel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mobile-picker-wheel-item {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: #666666;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        user-select: none;
+        padding: 16px 24px;
+        border-radius: 12px;
+        margin: 0 16px;
+        background: transparent;
+        border: 2px solid transparent;
+    }
+    
+    .mobile-picker-wheel-item.selected {
+        color: #FF4D4D;
+        font-size: 1.6rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, rgba(255, 77, 77, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+        transform: scale(1.08);
+        border: 2px solid #FF4D4D;
+        box-shadow: 0 8px 24px rgba(255, 77, 77, 0.3);
+        text-shadow: 0 2px 4px rgba(255, 77, 77, 0.3);
+    }
+    
+    .mobile-picker-wheel-item.above {
+        transform: translateY(-70px) scale(0.85);
+        opacity: 0.5;
+        color: #999999;
+    }
+    
+    .mobile-picker-wheel-item.below {
+        transform: translateY(70px) scale(0.85);
+        opacity: 0.5;
+        color: #999999;
+    }
+    
+    /* Индикаторы прокрутки */
+    .mobile-picker-wheel-indicators {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+    
+    .mobile-picker-wheel-indicators::before,
+    .mobile-picker-wheel-indicators::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #FF4D4D, transparent);
+        border-radius: 2px;
+        opacity: 0.6;
+        box-shadow: 0 2px 8px rgba(255, 77, 77, 0.3);
+    }
+    
+    .mobile-picker-wheel-indicators::before {
+        transform: translateY(-35px);
+    }
+    
+    .mobile-picker-wheel-indicators::after {
+        transform: translateY(35px);
+    }
+    
+    /* Кнопка подтверждения */
+    .mobile-picker-confirm {
+        padding: 20px 24px;
+        background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+        color: white;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: 700;
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 -4px 12px rgba(255, 77, 77, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mobile-picker-confirm::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .mobile-picker-confirm:hover::before {
+        left: 100%;
+    }
+    
+    .mobile-picker-confirm:hover {
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF4D4D 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 -6px 16px rgba(255, 77, 77, 0.4);
+    }
+    
+    .mobile-picker-confirm:active {
+        transform: translateY(0);
+        background: linear-gradient(135deg, #E64444 0%, #FF4D4D 100%);
+        box-shadow: 0 -2px 8px rgba(255, 77, 77, 0.3);
+    }
+    
+    /* Оверлей для мобильного пикера */
+    .mobile-picker-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 77, 77, 0.1) 100%);
+        backdrop-filter: blur(8px);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mobile-picker-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* 16. Pull-to-refresh */
+.pull-to-refresh {
+    position: fixed;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(135deg, #FF4D4D, #FF6B6B);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: top 0.3s ease;
+    font-weight: 600;
+}
+
+.pull-to-refresh.show {
+    top: 0;
+}
+
+/* 17. Вибрация */
+.vibrate {
+    animation: vibrate 0.3s ease;
+}
+
+@keyframes vibrate {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* 18. Улучшенные переходы */
+.page-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition.entering {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-transition.entered {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 19. Жесты навигации */
+.swipe-navigation {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 100px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 500;
+}
+
+.swipe-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 77, 77, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+}
+
+.swipe-indicator.left {
+    left: 20px;
+}
+
+.swipe-indicator.right {
+    right: 20px;
+}
+
+.swipe-indicator.show {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* 20. Выдвижное мобильное меню */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+}
+
+.mobile-drawer.show {
+    transform: translateX(0);
+}
+
+.mobile-drawer-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #FF4D4D 0%, #FF6B6B 100%);
+    color: white;
+    text-align: center;
+}
+
+.mobile-drawer-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.mobile-drawer-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.mobile-drawer-menu {
+    padding: 20px 0;
+}
+
+.mobile-drawer-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.mobile-drawer-item:hover {
+    background: rgba(255, 77, 77, 0.1);
+    border-left-color: #FF4D4D;
+    color: #FF4D4D;
+}
+
+.mobile-drawer-item.active {
+    background: rgba(255, 77, 77, 0.15);
+    border-left-color: #FF4D4D;
+    color: #FF4D4D;
+    font-weight: 600;
+}
+
+.mobile-drawer-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1999;
+}
+
+.mobile-drawer-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 21. Мобильные модальные окна */
+.mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.mobile-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-modal.show .mobile-modal-content {
+    transform: scale(1);
+}
+
+.mobile-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.mobile-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.mobile-modal-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.mobile-modal-body {
+    padding: 20px;
+}
+
+/* 22. Toast уведомления */
+.mobile-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-toast.success {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.mobile-toast.error {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
+.mobile-toast.warning {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.mobile-toast-icon {
+    font-size: 1.2rem;
+}
+
+.mobile-toast-message {
+    flex: 1;
+    font-weight: 500;
+}
+
+.page-transition.exiting {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* 19. Улучшенная производительность */
+.performance-optimized {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Уведомления отключены */
+
+/* 21. Улучшенные индикаторы загрузки */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #FF4D4D;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 22. Улучшенные кнопки */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FF4D4D, #FF6B6B);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #F8F9FA;
+    color: #333333;
+    border: 2px solid #E0E0E0;
+}
+
+.btn-secondary:hover {
+    background: #E9ECEF;
+    border-color: #D0D0D0;
+}
+
+/* 23. Улучшенные карточки с анимациями */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 77, 77, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* 24. Улучшенные иконки */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+.icon:active {
+    transform: scale(0.95);
+}
+
+/* 25. Улучшенные анимации появления */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.6s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.6s ease;
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}

@@ -1,0 +1,129 @@
+crewlife-api.service                                                          enabled         enabled
+crewlife-backend.service                                                      enabled         enabled
+mysql.service                                                                 alias           -
+mysqld.service                                                                alias           -
+nginx.service                                                                 enabled         enabled
+=== СТАТУС СЕРВИСОВ ===
+● crewlife-backend.service - CrewLife Backend API
+     Loaded: loaded (/etc/systemd/system/crewlife-backend.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-10-04 18:17:28 MSK; 5min ago
+   Main PID: 216550 (python)
+      Tasks: 3 (limit: 9466)
+     Memory: 49.9M (peak: 50.7M)
+        CPU: 1.944s
+     CGroup: /system.slice/crewlife-backend.service
+             ├─216550 /var/www/crewlife.ru/backend/venv/bin/python api_mysql.py
+             └─216561 /var/www/crewlife.ru/backend/venv/bin/python api_mysql.py
+
+Oct 04 18:17:29 5578173-qb35517 python[216561]:  * Debugger is active!
+Oct 04 18:17:29 5578173-qb35517 python[216561]:  * Debugger PIN: 698-258-120
+Oct 04 18:18:01 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:18:01] "GET /api/auth/check HTTP/1.1" 401 -
+Oct 04 18:18:54 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:18:54] "GET /api/auth/check HTTP/1.0" 401 -
+Oct 04 18:20:02 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:02] "GET /api/auth/check HTTP/1.0" 401 -
+Oct 04 18:20:22 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:22] "POST /api/auth/login HTTP/1.0" 401 -
+Oct 04 18:20:23 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:23] "GET /api/auth/check HTTP/1.0" 401 -
+Oct 04 18:20:29 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:29] "POST /api/auth/login HTTP/1.0" 401 -
+Oct 04 18:20:44 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:44] "GET /api/auth/check HTTP/1.0" 401 -
+Oct 04 18:20:46 5578173-qb35517 python[216561]: 127.0.0.1 - - [04/Oct/2025 18:20:46] "POST /api/auth/login HTTP/1.0" 401 -
+
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-10-04 18:17:05 MSK; 5min ago
+       Docs: man:nginx(8)
+   Main PID: 216229 (nginx)
+      Tasks: 5 (limit: 9466)
+     Memory: 6.0M (peak: 7.7M)
+        CPU: 109ms
+     CGroup: /system.slice/nginx.service
+             ├─216229 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─216448 "nginx: worker process"
+             ├─216449 "nginx: worker process"
+             ├─216450 "nginx: worker process"
+             └─216451 "nginx: worker process"
+
+Oct 04 18:17:04 5578173-qb35517 systemd[1]: Starting nginx.service - A high performance web server and a reverse proxy server...
+Oct 04 18:17:05 5578173-qb35517 systemd[1]: Started nginx.service - A high performance web server and a reverse proxy server.
+Oct 04 18:17:26 5578173-qb35517 systemd[1]: Reloading nginx.service - A high performance web server and a reverse proxy server...
+Oct 04 18:17:26 5578173-qb35517 nginx[216446]: 2025/10/04 18:17:26 [warn] 216446#216446: conflicting server name "crewlife.ru" on 0.0.0.0:80, ignored
+Oct 04 18:17:26 5578173-qb35517 nginx[216446]: 2025/10/04 18:17:26 [notice] 216446#216446: signal process started
+Oct 04 18:17:26 5578173-qb35517 systemd[1]: Reloaded nginx.service - A high performance web server and a reverse proxy server.
+
+● mariadb.service - MariaDB 10.11.13 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2025-10-03 19:07:41 MSK; 23h ago
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+   Main PID: 4114690 (mariadbd)
+     Status: "Taking your SQL requests now..."
+      Tasks: 10 (limit: 62477)
+     Memory: 83.0M (peak: 83.4M)
+        CPU: 10.089s
+     CGroup: /system.slice/mariadb.service
+             └─4114690 /usr/sbin/mariadbd
+
+Oct 03 19:07:41 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:07:41 0 [Warning] You need to use --log-bin to make --expire-logs-days or --binlog-expire-logs-seconds work.
+Oct 03 19:07:41 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:07:41 0 [Note] Server socket created on IP: '127.0.0.1'.
+Oct 03 19:07:41 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:07:41 0 [Note] InnoDB: Buffer pool(s) load completed at 251003 19:07:41
+Oct 03 19:07:41 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:07:41 0 [Note] /usr/sbin/mariadbd: ready for connections.
+Oct 03 19:07:41 5578173-qb35517 mariadbd[4114690]: Version: '10.11.13-MariaDB-0ubuntu0.24.04.1'  socket: '/run/mysqld/mysqld.sock'  port: 3306  Ubuntu 24.04
+Oct 03 19:07:41 5578173-qb35517 systemd[1]: Started mariadb.service - MariaDB 10.11.13 database server.
+Oct 03 19:26:06 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:26:06 42 [Warning] Aborted connection 42 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
+Oct 03 19:26:06 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:26:06 41 [Warning] Aborted connection 41 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
+Oct 03 19:26:07 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:26:07 43 [Warning] Aborted connection 43 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
+Oct 03 19:26:07 5578173-qb35517 mariadbd[4114690]: 2025-10-03 19:26:07 44 [Warning] Aborted connection 44 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
+=== ПОРТЫ ===
+=== ПОРТЫ ===
+tcp        0      0 0.0.0.0:8002            0.0.0.0:*               LISTEN      42399/docker-proxy  
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      1509/docker-proxy   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      4114690/mariadbd    
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      216550/python       
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      216229/nginx: maste 
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      216229/nginx: maste 
+tcp6       0      0 :::8002                 :::*                    LISTEN      42406/docker-proxy  
+tcp6       0      0 :::8000                 :::*                    LISTEN      1547/docker-proxy   
+=== ФАЙЛЫ САЙТА ===
+total 160
+drwxr-xr-x 10 www-data www-data  4096 Oct  4 18:17 .
+drwxr-xr-x  4 root     root      4096 Oct  4 18:17 ..
+-rwxr-xr-x  1 www-data www-data  6667 Oct  4 18:17 admin-demo.html
+-rwxr-xr-x  1 www-data www-data  7801 Oct  4 18:17 ADMIN_FEATURES.md
+-rwxr-xr-x  1 www-data www-data  9192 Oct  4 18:17 ADMIN_README.md
+drwxr-xr-x  3 www-data www-data  4096 Oct  4 18:17 assets
+drwxr-xr-x  5 www-data www-data  4096 Oct  4 18:17 backend
+-rwxr-xr-x  1 www-data www-data  7069 Oct  4 18:17 BUG_FIXES.md
+drwxr-xr-x  2 www-data www-data  4096 Oct  4 18:17 config
+=== ПОРТЫ ===
+tcp        0      0 0.0.0.0:8002            0.0.0.0:*               LISTEN      42399/docker-proxy  
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      1509/docker-proxy   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      4114690/mariadbd    
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      216550/python       
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      216229/nginx: maste 
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      216229/nginx: maste 
+tcp6       0      0 :::8002                 :::*                    LISTEN      42406/docker-proxy  
+tcp6       0      0 :::8000                 :::*                    LISTEN      1547/docker-proxy   
+=== ДАТА СОЗДАНИЯ: Sat Oct  4 06:25:25 PM MSK 2025 ===
+=== ФАЙЛЫ САЙТА ===
+total 160
+drwxr-xr-x 10 www-data www-data  4096 Oct  4 18:17 .
+drwxr-xr-x  4 root     root      4096 Oct  4 18:17 ..
+-rwxr-xr-x  1 www-data www-data  6667 Oct  4 18:17 admin-demo.html
+-rwxr-xr-x  1 www-data www-data  7801 Oct  4 18:17 ADMIN_FEATURES.md
+-rwxr-xr-x  1 www-data www-data  9192 Oct  4 18:17 ADMIN_README.md
+drwxr-xr-x  3 www-data www-data  4096 Oct  4 18:17 assets
+drwxr-xr-x  5 www-data www-data  4096 Oct  4 18:17 backend
+-rwxr-xr-x  1 www-data www-data  7069 Oct  4 18:17 BUG_FIXES.md
+drwxr-xr-x  2 www-data www-data  4096 Oct  4 18:17 config
+=== ДОМЕН И SSL ===
+=== ДАТА СОЗДАНИЯ: Sat Oct  4 06:25:34 PM MSK 2025 ===
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following certs:
+  Certificate Name: crewlife.ru
+    Serial Number: 67645ce99f3f4d5bb761d7ebe1f781b1dd7
+    Key Type: ECDSA
+    Domains: crewlife.ru www.crewlife.ru
+    Expiry Date: 2025-12-25 12:15:13+00:00 (VALID: 81 days)
+    Certificate Path: /etc/letsencrypt/live/crewlife.ru/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/crewlife.ru/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Статус: ✅ Авторизация работает

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrewLife - Офлайн режим</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/offline.css">
+    <link rel="manifest" href="../config/manifest.json">
+    <meta name="theme-color" content="#FF4D4D">
+    <meta name="description" content="CrewLife - Система подачи заявок для бортпроводников (офлайн режим)">
+    <link rel="stylesheet" href="../styles/mobile-advanced.css">
+    <script src="../scripts/animations.js"></script>
+    <script src="../scripts/mobile-ux.js"></script>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-content">
+            <!-- Логотип -->
+            <div class="offline-logo">
+                <div class="logo-icon">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V14L13 9V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z" fill="#FF4D4D"/>
+                    </svg>
+                </div>
+                <h1 class="logo-text">CrewLife</h1>
+            </div>
+
+            <!-- Иконка офлайн режима -->
+            <div class="offline-icon">
+                <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#FF4D4D"/>
+                    <path d="M1 1l22 22" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Заголовок -->
+            <h2 class="offline-title">Нет подключения к интернету</h2>
+            <p class="offline-description">
+                Проверьте подключение к интернету и попробуйте снова. 
+                Некоторые функции могут быть доступны в офлайн режиме.
+            </p>
+
+            <!-- Статус подключения -->
+            <div class="connection-status" id="connectionStatus">
+                <div class="status-indicator offline"></div>
+                <span class="status-text">Отключено</span>
+            </div>
+
+            <!-- Доступные функции -->
+            <div class="offline-features">
+                <h3>Доступно в офлайн режиме:</h3>
+                <ul class="features-list">
+                    <li>Просмотр кэшированных страниц</li>
+                    <li>Просмотр профиля пользователя</li>
+                    <li>Просмотр истории заявок</li>
+                    <li>Настройки приложения</li>
+                </ul>
+            </div>
+
+            <!-- Кнопки действий -->
+            <div class="offline-actions">
+                <button class="retry-btn" id="retryBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Попробовать снова
+                </button>
+                
+                <button class="home-btn" id="homeBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    На главную
+                </button>
+            </div>
+
+            <!-- Информация о приложении -->
+            <div class="offline-info">
+                <p class="app-version">CrewLife v2.0.0</p>
+                <p class="offline-note">
+                    Приложение работает в офлайн режиме. 
+                    Данные будут синхронизированы при восстановлении соединения.
+                </p>
+            </div>
+        </div>
+
+        <!-- Анимация загрузки -->
+        <div class="loading-animation" id="loadingAnimation" style="display: none;">
+            <div class="spinner"></div>
+            <p>Проверка подключения...</p>
+        </div>
+    </div>
+
+    <script src="../scripts/offline.js"></script>
+</body>
+</html>
