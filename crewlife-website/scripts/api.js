@@ -20,7 +20,6 @@ class CrewLifeAPI {
             this.setCachedData('usersCount', response);
             return response;
         } catch (error) {
-            console.error('Ошибка получения количества пользователей:', error);
             throw error;
         }
     }
@@ -39,7 +38,6 @@ class CrewLifeAPI {
             this.setCachedData('requestsCount', response);
             return response;
         } catch (error) {
-            console.error('Ошибка получения количества заявок:', error);
             throw error;
         }
     }
@@ -58,7 +56,6 @@ class CrewLifeAPI {
                 lastUpdated: new Date().toISOString()
             };
         } catch (error) {
-            console.error('Ошибка получения статистики:', error);
             throw error;
         }
     }
@@ -109,7 +106,6 @@ class CrewLifeAPI {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error('API запрос failed:', error);
             throw error;
         }
     }

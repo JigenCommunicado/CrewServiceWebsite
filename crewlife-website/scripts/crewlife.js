@@ -419,7 +419,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
         } catch (error) {
-            console.error('Ошибка загрузки статистики:', error);
             // Показываем уведомление об ошибке
             if (window.CrewLife) {
                 window.CrewLife.showNotification('Ошибка загрузки статистики', 'error');
@@ -458,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
             } catch (error) {
-                console.error('Ошибка обновления статистики:', error);
+                // Ошибка обновления статистики
             }
         }, 30000); // 30 секунд
     }
@@ -656,7 +655,7 @@ function loadUserData() {
             document.getElementById('fullName').value = user.fullName || '';
             document.getElementById('employeeId').value = user.employeeId || '';
         } catch (e) {
-            console.log('Ошибка загрузки данных пользователя:', e);
+            // Ошибка загрузки данных пользователя
         }
     }
 }
