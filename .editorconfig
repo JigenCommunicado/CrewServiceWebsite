@@ -1,0 +1,77 @@
+# EditorConfig для единообразного стиля кода
+# https://editorconfig.org
+
+# Корневой файл конфигурации
+root = true
+
+# Настройки для всех файлов
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# JavaScript/Node.js файлы
+[*.{js,jsx,mjs,cjs}]
+indent_size = 2
+max_line_length = 100
+
+# TypeScript файлы
+[*.{ts,tsx}]
+indent_size = 2
+max_line_length = 100
+
+# JSON файлы
+[*.json]
+indent_size = 2
+
+# Python файлы
+[*.py]
+indent_size = 4
+max_line_length = 88
+
+# HTML файлы
+[*.html]
+indent_size = 2
+max_line_length = 120
+
+# CSS/SCSS/SASS файлы
+[*.{css,scss,sass,less}]
+indent_size = 2
+max_line_length = 120
+
+# YAML файлы
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown файлы
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Shell скрипты
+[*.sh]
+indent_size = 2
+end_of_line = lf
+
+# Makefile
+[Makefile]
+indent_style = tab
+
+# Docker файлы
+[Dockerfile*]
+indent_size = 2
+
+# Nginx конфигурация
+[*.conf]
+indent_size = 2
+
+# package.json
+[package.json]
+indent_size = 2
+
+# .env файлы
+[.env*]
+insert_final_newline = false
